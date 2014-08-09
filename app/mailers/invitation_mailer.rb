@@ -7,7 +7,8 @@ class InvitationMailer < ActionMailer::Base
   #   en.invitation_mailer.invitation.subject
   #
   def invitation(invite, url)
-    @greeting = "Hi"
+    @invite = invite
+    @url = url
 
     mail to: "to@example.org", subject: 'welcome!!!'
   end
