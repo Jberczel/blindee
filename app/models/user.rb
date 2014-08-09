@@ -4,9 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-
   has_many :created_votes, :foreign_key => "creator_id", :class_name => "Vote"
-  # has_many :casted_votes, :through => :invites, :source => :vote
   has_many :answers
 
   has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'

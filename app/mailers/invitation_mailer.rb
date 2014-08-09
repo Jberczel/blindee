@@ -6,11 +6,11 @@ class InvitationMailer < ActionMailer::Base
   #
   #   en.invitation_mailer.invitation.subject
   #
-  def invitation(invite, url)
+  def new_invitation(invite, url)
     @invite = invite
     @url = url
 
-    mail to: "to@example.org", subject: 'welcome!!!'
+    mail to: "#{@invite.email}", subject: 'welcome!!!'
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -18,9 +18,10 @@ class InvitationMailer < ActionMailer::Base
   #
   #   en.invitation_mailer.notification.subject
   #
-  def notification
-    @greeting = "Hi"
+  def vote_invitation(invite, url)
+    @invite = invite
+    @url = url
 
-    mail to: "to@example.org"
+    mail to: "#{@invite.email}", subject: "You've got a question: #{@invite.vote.question}"
   end
 end
