@@ -15,7 +15,7 @@ class VotesController < ApplicationController
 
   # GET /votes/new
   def new
-    @vote = Vote.new
+    @vote = current_user.created_votes.build
   end
 
   # GET /votes/1/edit
@@ -24,7 +24,7 @@ class VotesController < ApplicationController
 
   # POST /votes
   def create
-    @vote = Vote.new(vote_params)
+    @vote = current_user.created_votes.build(vote_params)
 
     if @vote.save
       redirect_to @vote, notice: 'Vote was successfully created.'
