@@ -1,0 +1,25 @@
+<script>
+$(document).ready( function() {
+var ctx = $(".myChart").get(0).getContext("2d");
+// This will get the first returned node in the jQuery collection.
+
+console.log( "<%= @results.keys %>" );
+
+var data = {
+    labels: <%= raw @results.keys %>,
+    datasets: [
+        {
+            label: "My First dataset",
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: <%= @results.values %>,
+        },
+        
+    ]
+};
+
+var myBarChart = new Chart(ctx).Bar(data, { barShowStroke: false});
+});
+</script>

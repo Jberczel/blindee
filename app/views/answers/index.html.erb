@@ -1,4 +1,9 @@
 <h1>Answers#index</h1>
 <p>Find me in app/views/answers/index.html.erb</p>
 
+<% content_for :javascript do %>
+  <%= render 'chart.js' %>
+<% end %>
+
+<canvas class="myChart" width="600" height="400"></canvas>
 <p>count = <%= @results %></p>
