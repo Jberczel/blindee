@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @vote.question %>
+</p>
+
+<%= simple_form_for([@vote, @answer]) do |f| %>
+<div class="form-inputs">
+  <%- @vote.getChoices.each do |option| %>
+  <%= f.label "#{option}", option do %>
+    <%= f.radio_button :answer, option %>
+    <%= option %>
+  <% end %>
+<% end %>
+</div>
+
+<div class="form-actions">
+  <%= f.button :submit, "Submit Vote" %>
+</div>
+<% end %>
+
+<%= link_to 'Edit', edit_vote_path(@vote) %> |
+<%= link_to 'Back', votes_path %>
+
