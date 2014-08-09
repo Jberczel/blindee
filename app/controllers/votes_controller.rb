@@ -20,6 +20,7 @@ class VotesController < ApplicationController
 
   # GET /votes/1/edit
   def edit
+    @invite = @vote.invites.build
   end
 
   # POST /votes

@@ -109,6 +109,8 @@ GEM
     kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
+    letter_opener (1.2.0)
+      launchy (~> 2.2)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -242,6 +244,7 @@ DEPENDENCIES
   high_voltage
   jquery-rails
   launchy
+  letter_opener
   neat (~> 1.5.1)
   newrelic_rpm (>= 3.7.3)
   pg

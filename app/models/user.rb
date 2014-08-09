@@ -9,4 +9,7 @@ class User < ActiveRecord::Base
   # has_many :casted_votes, :through => :invites, :source => :vote
   has_many :answers
 
+  has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'
+  has_many :sent_invites, :class_name => "Invite", :foreign_key => 'sender_id'
+
 end

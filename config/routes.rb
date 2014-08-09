@@ -4,5 +4,7 @@ Rails.application.routes.draw do
     resources :answers
   end
 
+  resources :invites
+
   devise_for :users
 end
