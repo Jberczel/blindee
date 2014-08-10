@@ -5,6 +5,12 @@
   <%= @vote.question %>
 </p>
 
+<p>
+<% @vote.invites.each do |person| %>
+  <%= person.email %>, 
+<% end %>
+</p>
+
 <%= simple_form_for([@vote, @answer]) do |f| %>
 <div class="form-inputs">
   <%- @vote.getChoices.each do |option| %>

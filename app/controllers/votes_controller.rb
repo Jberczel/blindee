@@ -1,6 +1,7 @@
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user! 
+  before_filter :answered, only: :show
 
 
   # GET /votes
@@ -58,6 +59,11 @@ class VotesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def vote_params
       params.require(:vote).permit(:question, :choices)
+    end
+
+    def answered
+      voted = current_user.answers.find_by(:vote_id => params[:id])
+      redirect_to root_url, notice: "Already cast vote" if voted
     end
 
     
