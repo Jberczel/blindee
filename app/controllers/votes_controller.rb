@@ -2,6 +2,7 @@ class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user! 
   before_filter :answered, only: :show
+  before_filter :check_creator, only: [ :edit, :update, :destroy ]
 
 
   # GET /votes
@@ -63,7 +64,11 @@ class VotesController < ApplicationController
 
     def answered
       voted = current_user.answers.find_by(:vote_id => params[:id])
-      redirect_to root_url, notice: "Already cast vote" if voted
+      redirect_to root_path, notice: "Already cast vote" if voted
+    end
+
+    def check_creator
+      redirect_to root_path unless current_user = @vote.creator
     end
 
     
