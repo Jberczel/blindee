@@ -4,3 +4,5 @@
 @import 'base/grid-settings';
 @import 'neat';
 @import 'base/base';
+
+#flash_notice { @extend %flash-notice; }

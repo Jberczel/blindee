@@ -1,8 +1,7 @@
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user! 
-  before_filter :answered, only: :show
-  before_filter :check_creator, only: [ :edit, :update, :destroy ]
+  before_action :answered, only: :show
+  before_action :check_creator, only: [ :edit, :update, :destroy ]
 
 
   # GET /votes
@@ -28,9 +27,11 @@ class VotesController < ApplicationController
   # POST /votes
   def create
     @vote = current_user.created_votes.build(vote_params)
-
+   
     if @vote.save
-      redirect_to @vote, notice: 'Vote was successfully created.'
+      # flash doesn't appear if I use short-hand style
+      flash[:success] = 'Vote was successfully created.'
+      redirect_to @vote
     else
       render :new
     end
@@ -39,7 +40,9 @@ class VotesController < ApplicationController
   # PATCH/PUT /votes/1
   def update
     if @vote.update(vote_params)
-      redirect_to @vote, notice: 'Vote was successfully updated.'
+      # flash doesn't appear if I use short-hand style
+      flash[:success] = 'Vote was successfully updated.'
+      redirect_to @vote
     else
       render :edit
     end

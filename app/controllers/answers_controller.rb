@@ -9,8 +9,9 @@ class AnswersController < ApplicationController
   def create
     @answer = @vote.answers.build(answer_params)
     @answer.user_id = current_user.id
-    if @answer.save   
-      redirect_to vote_answers_path, notice: "Your vote was cast."
+    if @answer.save
+      flash[:success] = "Thanks, your vote was cast."
+      redirect_to vote_answers_path
     else
       render 'new'
     end
