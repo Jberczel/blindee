@@ -99,7 +99,6 @@ GEM
       activesupport
       capybara
       i18n
-    high_voltage (2.2.1)
     hike (1.2.3)
     i18n (0.6.11)
     jquery-rails (3.1.1)
@@ -241,7 +240,6 @@ DEPENDENCIES
   flutie
   foreman
   formulaic
-  high_voltage
   jquery-rails
   launchy
   letter_opener
