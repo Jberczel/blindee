@@ -10,7 +10,7 @@ User.destroy_all
 Vote.destroy_all
 Invite.destroy_all
 
-u = User.create!(email: "jamie@email.com", password: "watermellon")
+User.create!(email: "jamie@email.com", password: "watermellon")
 User.create!(email: "liam@email.com", password: "watermellon")
 User.create!(email: "dad@email.com", password: "watermellon")
 User.create!(email: "mom@email.com", password: "watermellon")

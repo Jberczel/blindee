@@ -2,4 +2,18 @@
 
 <p>welcome to blindy, a website for creating blind vote systems.</p>
 
+<% if @created_votes %>
+<% @created_votes.each do |v| %>
+  <p><%= link_to v.question, vote_path(v) %></p>
+<% end %>
+<% end %>
+
+<% if @invitations %>
+<% @invitations.each do |i| %>
+  <span>Sent by: <%= i.sender.email %></span>
+  <span>Vote on: <%= link_to i.vote.question, vote_path(i.vote) %></span>
+<% end %>
+<% end %>
+
+
 <p><%= link_to "View Voting", votes_path %></p>
