@@ -1,0 +1,15 @@
+.static_pages {
+  @include outer-container;
+  border: 1px solid $base-border-color;
+  
+  h1 {
+    clear:right;
+  }
+
+  h3 {
+    font-weight: 300;
+  }
+
+}
+
+

@@ -13,6 +13,7 @@ class VotesController < ApplicationController
   # GET /votes/1
   def show
     @answer = @vote.answers.build
+    @invites = @vote.invites
   end
 
   # GET /votes/new
@@ -96,13 +97,19 @@ class VotesController < ApplicationController
 
     def check_invited
       invited = current_user.invitations.find_by(:vote_id => params[:id])
-      redirect_to root_path, notice: "Sorry, you weren't invited" unless invited
+      unless invited || current_user?(@vote.creator)
+        redirect_to root_path, notice: "Sorry, you weren't invited"
+      end
     end
 
     def check_creator
-      unless current_user == @vote.creator
+      unless current_user?(@vote.creator)
         redirect_to root_path, notice: "You do not have access to edit/delete."
       end
+    end
+
+    def current_user?(user)
+      user == current_user
     end
 
     

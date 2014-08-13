@@ -6,7 +6,17 @@
 @import 'base/base';
 
 @import 'devise';
+@import 'static-pages';
+@import 'votes';
+
 
 #sign_in {
-  float:right;
+  float: right;
 }
+
+#flash {
+  clear: right;
+  margin-top: 2em;
+}
+
+

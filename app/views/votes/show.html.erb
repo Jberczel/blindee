@@ -1,14 +1,10 @@
-<p id="notice"><%= notice %></p>
+
 
 <h3>Question</h3>
 <p><%= @vote.question %></p>
 
 <h3>Invites</h3>
-<p>
-<% @vote.invites.each do |person| %>
-  <%= person.email %>, 
-<% end %>
-</p>
+<%= @invites.map{ |i| i.email }.join(", ") %>
 
 <h3>Choices</h3>
 <%= simple_form_for([@vote, @answer]) do |f| %>

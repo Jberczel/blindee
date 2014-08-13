@@ -1,6 +1,7 @@
 <h1>home</h1>
 
-<p>welcome to blindy, a website for creating blind vote systems.</p>
+<h3>Welcome to Blindy, a website for creating blind vote systems.</h3>
+<p><%= link_to "View All Voting", votes_path %></p>
 
 <h3>Your Questions</h3>
 <% if @created_votes %>
@@ -11,11 +12,11 @@
 
 <h3>Invitations</h3>
 <% if @invitations %>
-<% @invitations.each do |i| %>
-  <span>Sent by: <%= i.sender.email %></span>
-  <span>Vote on: <%= link_to i.vote.question, vote_path(i.vote) %></span>
+<% @invitations.each do |i| %> 
+  <span><%= link_to i.vote.question, vote_path(i.vote) %></span>
+  <span>(sent by: <%= i.sender.email %>)</span>
 <% end %>
 <% end %>
 
 
-<p><%= link_to "View Voting", votes_path %></p>
+
