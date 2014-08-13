@@ -1,11 +1,21 @@
-
 .devise-sessions-new,
 .registrations-new {
-  
   @include outer-container;
+  border: 1px solid $base-border-color;
+  @include border-top-radius(5px);
+  @include border-bottom-radius(5px);
+  @include border-left-radius(5px);
+  @include border-right-radius(5px);
+}
+
+.user-form {
+  @include span-columns(4);
+  @include shift(4);
+  @include margin(2em null 2em null);
 
   h2 {
     margin-bottom: 12px;
+    font-weight: 300
   }
 }
 
