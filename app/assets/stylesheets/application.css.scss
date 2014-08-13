@@ -8,15 +8,16 @@
 @import 'devise';
 @import 'static-pages';
 @import 'votes';
+@import 'answers';
 
 
 #sign_in {
   float: right;
+  margin-bottom: 1em;
 }
 
 #flash {
   clear: right;
-  margin-top: 2em;
 }
 
 

@@ -1,6 +1,7 @@
 class VotesController < ApplicationController
+  include VotesHelper
   before_action :set_vote, only: [:show, :edit, :update, :destroy, :invite]
-  before_action :check_answered, only: :show
+
   before_action :check_invited, only: :show
   before_action :check_creator, only: [ :edit, :update, :destroy, :invite ]
 
@@ -90,9 +91,8 @@ class VotesController < ApplicationController
       params.require(:vote).permit(:question, :choices)
     end
 
-    def check_answered
-      answered = current_user.answers.find_by(:vote_id => params[:id])
-      redirect_to root_path, notice: "Already cast vote" if answered
+    def user_answered?
+      current_user.answers.find_by(:vote_id => params[:id])
     end
 
     def check_invited

@@ -1,23 +1,10 @@
-<%= form_for(@vote) do |f| %>
-  <% if @vote.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@vote.errors.count, "error") %> prohibited this vote from being saved:</h2>
-
-      <ul>
-      <% @vote.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= minimal_form_for(@vote) do |f| %>
 
   <div class="field">
-    <%= f.label :question %><br>
-    <%= f.text_field :question %>
+    <%= f.input :question %>
   </div>
   <div class="field">
-    <%= f.label :choices %><br>
-    <%= f.text_area :choices, rows: 5 %>
+    <%= f.text_area :choices, rows: 5, placeholder: "Enter answers on each line..." %>
   </div>
 
   <div class="actions">
