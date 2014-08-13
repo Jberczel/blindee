@@ -1,16 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Question:</strong>
-  <%= @vote.question %>
-</p>
+<h3>Question</h3>
+<p><%= @vote.question %></p>
 
+<h3>Invites</h3>
 <p>
 <% @vote.invites.each do |person| %>
   <%= person.email %>, 
 <% end %>
 </p>
 
+<h3>Choices</h3>
 <%= simple_form_for([@vote, @answer]) do |f| %>
 <div class="form-inputs">
   <%- @vote.getChoices.each do |option| %>
@@ -25,6 +25,7 @@
   <%= f.button :submit, "Submit Vote" %>
 </div>
 <% end %>
+
 
 <%= link_to 'Edit', edit_vote_path(@vote) %> |
 <%= link_to 'Back', votes_path %>

@@ -4,6 +4,7 @@ class Invite < ActiveRecord::Base
   belongs_to :recipient, :class_name => 'User'
 
   before_create :generate_token
+  # save takes care of updates and creates
   before_save :check_user_existence
 
 

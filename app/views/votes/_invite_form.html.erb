@@ -1,0 +1,5 @@
+<!-- controller: 'votes', action: 'invite' -->
+<%= form_tag invite_vote_path do %>
+  <%= text_area_tag :invite_emails, nil, rows: 5 %>
+  <%= submit_tag "Send", :name => nil, class: "button" %>
+<% end %>

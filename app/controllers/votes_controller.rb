@@ -1,7 +1,8 @@
 class VotesController < ApplicationController
-  before_action :set_vote, only: [:show, :edit, :update, :destroy]
-  before_action :answered, only: :show
-  before_action :check_creator, only: [ :edit, :update, :destroy ]
+  before_action :set_vote, only: [:show, :edit, :update, :destroy, :invite]
+  before_action :check_answered, only: :show
+  before_action :check_invited, only: :show
+  before_action :check_creator, only: [ :edit, :update, :destroy, :invite ]
 
 
   # GET /votes
@@ -54,6 +55,29 @@ class VotesController < ApplicationController
     redirect_to votes_url, notice: 'Vote was successfully destroyed.'
   end
 
+  # invite multiple voters
+  def invite
+    email_regex = /\A[\w+\-.]+@[a-z\d\-.]+[^.]\.[a-z]+\z/i
+    emails = params[:invite_emails].split(',')
+    emails.each do |email|
+      #validate email before creating invite (strip white spaces and newlines)
+      # !strip returns nill if no change
+      email = email.strip
+      if email.strip =~ email_regex
+        # recipient id set in callback if user already registered
+        @invite = Invite.new(:sender_id => current_user.id, :email => email, :vote => @vote)
+        if @invite.save && @invite.recipient 
+          link = vote_url(@vote)
+          InvitationMailer.vote_invitation(@invite, link).deliver!
+        else
+          link = new_user_registration_url(:invite_token => @invite.token)
+          InvitationMailer.new_invitation(@invite, link).deliver!
+        end
+      end
+    end
+    redirect_to root_path, notice: "Emails sent."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_vote
@@ -65,13 +89,20 @@ class VotesController < ApplicationController
       params.require(:vote).permit(:question, :choices)
     end
 
-    def answered
-      voted = current_user.answers.find_by(:vote_id => params[:id])
-      redirect_to root_path, notice: "Already cast vote" if voted
+    def check_answered
+      answered = current_user.answers.find_by(:vote_id => params[:id])
+      redirect_to root_path, notice: "Already cast vote" if answered
+    end
+
+    def check_invited
+      invited = current_user.invitations.find_by(:vote_id => params[:id])
+      redirect_to root_path, notice: "Sorry, you weren't invited" unless invited
     end
 
     def check_creator
-      redirect_to root_path unless current_user = @vote.creator
+      unless current_user == @vote.creator
+        redirect_to root_path, notice: "You do not have access to edit/delete."
+      end
     end
 
     

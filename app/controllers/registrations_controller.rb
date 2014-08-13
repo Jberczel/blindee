@@ -2,7 +2,8 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def new  
-    build_resource({})  
+    build_resource({})
+    # inspired by railscats--adds invite email to form based on token
     @token = params[:invite_token]
     if @token
       @invite = Invite.find_by_token(@token)
@@ -16,7 +17,7 @@ class RegistrationsController < Devise::RegistrationsController
     @token = params[:invite_token]
     if @token
         @invite = Invite.find_by_token(@token)
-        @invite.update_attributes(:recipient => resource)
+        @invite.update_attributes(:recipient => resource) if @invite
     end
  end
 

@@ -5,6 +5,7 @@
     <tr>
       <th>Question</th>
       <th>Choices</th>
+      <th>Author</th>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
       <tr>
         <td><%= vote.question %></td>
         <td><%= vote.choices %></td>
+        <td><%= vote.creator.email %></td>
         <td><%= link_to 'Vote', vote %></td>
         <td><%= link_to 'Results', vote_answers_path(vote) %></td>
         <td><%= link_to 'Edit', edit_vote_path(vote) %></td>

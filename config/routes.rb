@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
   resources :votes do
+    member do
+      post :invite
+    end
+
     resources :answers
+    
   end
 
   resources :invites
