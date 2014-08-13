@@ -5,4 +5,8 @@
 @import 'neat';
 @import 'base/base';
 
-#flash_notice { @extend %flash-notice; }
+@import 'devise';
+
+#sign_in {
+  float:right;
+}

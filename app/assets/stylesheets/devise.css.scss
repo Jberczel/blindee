@@ -1,0 +1,11 @@
+
+.devise-sessions-new,
+.registrations-new {
+  
+  @include outer-container;
+
+  h2 {
+    margin-bottom: 12px;
+  }
+}
+
