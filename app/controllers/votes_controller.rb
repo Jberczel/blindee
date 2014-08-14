@@ -59,7 +59,7 @@ class VotesController < ApplicationController
 
   # invite multiple voters
   def invite
-    emails = params[:invite_emails].split(',')
+    emails = params[:invite_emails].split(/,|\r\n|\n/)
     invalid_emails = []
 
     emails.each do |email|
