@@ -1,11 +1,12 @@
-<h1>Answers#index</h1>
-<p>Find me in app/views/answers/index.html.erb</p>
+<section class="results">
+<h1>The results are in.</h1>
 
 <% content_for :javascript do %>
   <%= render 'chart.js' %>
 <% end %>
 
-<canvas class="myChart" width="600" height="400"></canvas>
-<p>count = <%= @results %></p>
+<canvas class="myChart" width="300" height="400"></canvas>
 
+ <!-- <p>count = <%= @results.class %></p> -->
 <p><%= link_to "Back", votes_path %></p>
+</section>

@@ -3,7 +3,14 @@ class AnswersController < ApplicationController
 
   def index
     @answers = @vote.answers
-    @results = @answers.group(:answer).count
+    # TODO: use SQL to get 0 values as part of results hash
+    # workaround is create hash of 0's and merge found answers
+    h = {}    
+    ary = @vote.get_choices
+    ary.each{ |a| h[a] = 0 }
+
+    @results = h.merge @answers.group(:answer).count
+
   end
 
   def create

@@ -1,7 +1,7 @@
 <%= simple_form_for([@vote, @answer]) do |f| %>
   
   <div class="form-inputs">
-    <%- @vote.getChoices.each do |option| %>
+    <%- @vote.get_choices.each do |option| %>
     <%= f.label "#{option}", option do %>
       <%= f.radio_button :answer, option %>
       <%= option %>

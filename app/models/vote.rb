@@ -7,7 +7,7 @@ class Vote < ActiveRecord::Base
   has_many :invites, :dependent => :destroy
 
 
-  def getChoices
+  def get_choices
     choices.split(/\r?\n/)
   end
 
