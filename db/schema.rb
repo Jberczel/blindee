@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140809173255) do
+ActiveRecord::Schema.define(version: 20140814142934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,10 @@ ActiveRecord::Schema.define(version: 20140809173255) do
     t.datetime "updated_at"
   end
 
+  add_index "invites", ["email", "vote_id"], name: "index_invites_on_email_and_vote_id", unique: true, using: :btree
+  add_index "invites", ["email"], name: "index_invites_on_email", using: :btree
+  add_index "invites", ["token"], name: "index_invites_on_token", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -75,5 +79,7 @@ ActiveRecord::Schema.define(version: 20140809173255) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "votes", ["creator_id"], name: "index_votes_on_creator_id", using: :btree
 
 end

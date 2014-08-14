@@ -59,25 +59,32 @@ class VotesController < ApplicationController
 
   # invite multiple voters
   def invite
-    email_regex = /\A[\w+\-.]+@[a-z\d\-.]+[^.]\.[a-z]+\z/i
     emails = params[:invite_emails].split(',')
+    invalid_emails = []
+
     emails.each do |email|
-      #validate email before creating invite (strip white spaces and newlines)
-      # !strip returns nill if no change
       email = email.strip
-      if email.strip =~ email_regex
-        # recipient id set in callback if user already registered
+
+      unless invited?(email) 
         @invite = Invite.new(:sender_id => current_user.id, :email => email, :vote => @vote)
         if @invite.save && @invite.recipient 
           link = vote_url(@vote)
           InvitationMailer.vote_invitation(@invite, link).deliver!
-        else
+        elsif @invite.save
           link = new_user_registration_url(:invite_token => @invite.token)
           InvitationMailer.new_invitation(@invite, link).deliver!
+        else
+          invalid_emails << email
         end
       end
     end
-    redirect_to root_path, notice: "Emails sent."
+
+    if invalid_emails.any?
+      flash[:notice] = "Not all emails sent: #{invalid_emails}"
+    else
+      flash[:success] = "Emails sent!"
+    end
+    redirect_to root_path
   end
 
   private

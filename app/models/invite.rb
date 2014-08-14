@@ -7,6 +7,9 @@ class Invite < ActiveRecord::Base
   # save takes care of updates and creates
   before_save :check_user_existence
 
+  validates :email, presence: true, :email => true
+  validates :vote_id, presence: true
+
 
 
 
