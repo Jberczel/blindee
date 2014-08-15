@@ -6,7 +6,7 @@ module VotesHelper
   def check_invited
     invited = current_user.invitations.find_by(:vote_id => params[:id])
     unless invited || current_user?(@vote.creator)
-      redirect_to root_path, notice: "Sorry, you weren't invited"
+      redirect_to root_path, notice: "Sorry, you weren't invited to this Vote."
     end
   end
 
@@ -20,7 +20,7 @@ module VotesHelper
     user == current_user
   end
 
-
+  # helper function for unqiue emails for each vote
   def invited?(email)
     @vote.invites.find_by(email: email)
   end

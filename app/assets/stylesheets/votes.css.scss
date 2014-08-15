@@ -1,4 +1,25 @@
 .votes {
   @include outer-container;
+
+  hr {
+    @include margin(0em null 0.5em null);
+  }
+
+  ul {
+    margin-bottom: .75em;
+  }
+
+  .question, .choices, .invites {
+    @include span-columns(6);
+    @include shift(3);
+  }
+
+  .nav-links {
+    @extend .question;
+    text-align: center;
+    margin-top: 1em;
+  }
 }
+
+
 

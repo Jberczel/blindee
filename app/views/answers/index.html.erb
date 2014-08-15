@@ -1,12 +1,12 @@
 <section class="results">
-<h1>The results are in.</h1>
+  <h1>The results are in.</h1>
 
-<% content_for :javascript do %>
-  <%= render 'chart.js' %>
-<% end %>
+  <% content_for :javascript do %>
+      <%= render 'chart.js' %>
+  <% end %>
 
-<canvas class="myChart"></canvas>
+  <canvas class="myChart"></canvas>
 
- <!-- <p>count = <%= @results.class %></p> -->
-<p><%= link_to "Back", votes_path %></p>
+  <!-- <p>count = <%= @results.class %></p> -->
+  <p><%= link_to "Back", votes_path %></p>
 </section>

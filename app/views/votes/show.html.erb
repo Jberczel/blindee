@@ -1,18 +1,29 @@
 
 
-<h3>Question</h3>
-<p><%= @vote.question %></p>
+<div class="question">
+  <h3>Question</h3>
+  <hr>
+  <p><%= @vote.question %></p>
+</div>
 
-<h3>Invites</h3>
-<%= @invites.map{ |i| i.email }.join(", ") %>
-
+<div class="choices">
 <h3>Choices</h3>
-<% if user_answered? %>
-  <%= render 'answer_choices' %>
-<% else %>
-  <%= render 'answer_form' %>
-<% end %>
+  <hr>
+  <% if user_answered? %>
+    <%= render 'answer_choices' %>
+  <% else %>
+    <%= render 'answer_form' %>
+  <% end %>
+</div>
 
-<%= link_to 'Edit', edit_vote_path(@vote) %> |
-<%= link_to 'Back', votes_path %>
+<div class="invites">
+<h3>Invites</h3>
+  <hr>
+  <%= @invites.map{ |i| i.email }.join(", ") %>
+</div>
 
+
+<div class="nav-links">
+  <%= link_to 'Edit', edit_vote_path(@vote) %> |
+  <%= link_to 'Back', votes_path %>
+  </div>

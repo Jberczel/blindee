@@ -1,3 +1,5 @@
-<%- @vote.get_choices.each do |option| %>
-  <li><%= option %></li>
-<% end %>
+<ul class="default">
+  <%- @vote.get_choices.each do |option| %>
+    <li><%= option %></li>
+  <% end %>
+</ul>
