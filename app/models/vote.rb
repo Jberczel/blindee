@@ -6,9 +6,17 @@ class Vote < ActiveRecord::Base
 
   has_many :invites, :dependent => :destroy
 
+  before_save :add_quote
+
 
   def get_choices
     choices.split(/\r?\n/)
+  end
+
+  private
+
+  def add_quote
+    self.question << '?' unless self.question.ends_with?('?')
   end
 
 end
