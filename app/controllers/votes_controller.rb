@@ -1,7 +1,6 @@
 class VotesController < ApplicationController
   include VotesHelper
-  before_action :set_vote, only: [:show, :edit, :update, :destroy, :invite]
-
+  before_action :set_vote, only: [ :show, :edit, :update, :destroy, :invite ]
   before_action :check_invited, only: :show
   before_action :check_creator, only: [ :edit, :update, :destroy, :invite ]
 
@@ -82,7 +81,7 @@ class VotesController < ApplicationController
     if invalid_emails.any?
       flash[:notice] = "Not all emails sent: #{invalid_emails}"
     else
-      flash[:success] = "Emails sent!"
+      flash[:success] = 'Emails sent!'
     end
     redirect_to root_path
   end
@@ -111,7 +110,7 @@ class VotesController < ApplicationController
 
     def check_creator
       unless current_user?(@vote.creator)
-        redirect_to root_path, notice: "You do not have access to edit/delete."
+        redirect_to root_path, notice: 'You do not have access to edit/delete.'
       end
     end
 
@@ -119,5 +118,4 @@ class VotesController < ApplicationController
       user == current_user
     end
 
-    
 end

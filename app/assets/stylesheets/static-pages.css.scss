@@ -1,15 +1,23 @@
 .static_pages {
   @include outer-container;
   border: 1px solid $base-border-color;
-  
-  h1 {
-    clear:right;
-  }
 
   h3 {
     font-weight: 300;
+    clear: right;
+    margin-bottom: 1rem;
+  }
+
+  .questions, .invites, .nav-links {
+    @include span-columns(6);
+    @include shift(3);
+  }
+
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+
   }
 
 }
-
 
