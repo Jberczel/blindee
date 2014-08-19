@@ -25,6 +25,7 @@ group :development do
   gem "spring"
   gem "spring-commands-rspec"
   gem "better_errors"
+  gem "quiet_assets"
 end
 
 group :development, :test do
