@@ -1,8 +1,8 @@
 class VotesController < ApplicationController
   include VotesHelper
-  before_action :set_vote, only: [ :show, :edit, :update, :destroy, :invite ]
+  before_action :set_vote, only: [ :show, :edit, :update, :destroy ]
   before_action :check_invited, only: :show
-  before_action :check_creator, only: [ :edit, :update, :destroy, :invite ]
+  before_action :check_creator, only: [ :edit, :update, :destroy ]
 
 
   # GET /votes
@@ -23,7 +23,7 @@ class VotesController < ApplicationController
 
   # GET /votes/1/edit
   def edit
-    @invite = @vote.invites.build
+
   end
 
   # POST /votes
@@ -56,36 +56,6 @@ class VotesController < ApplicationController
     redirect_to votes_url, notice: 'Vote was successfully destroyed.'
   end
 
-  # invite multiple voters
-  def invite
-    emails = params[:invite_emails].split(/,|\r\n|\n/)
-    invalid_emails = []
-
-    emails.each do |email|
-      email = email.strip
-
-      unless invited?(email) 
-        @invite = Invite.new(:sender_id => current_user.id, :email => email, :vote => @vote)
-        if @invite.save && @invite.recipient 
-          link = vote_url(@vote)
-          InvitationMailer.vote_invitation(@invite, link).deliver!
-        elsif @invite.save
-          link = new_user_registration_url(:invite_token => @invite.token)
-          InvitationMailer.new_invitation(@invite, link).deliver!
-        else
-          invalid_emails << email
-        end
-      end
-    end
-
-    if invalid_emails.any?
-      flash[:notice] = "Not all emails sent: #{invalid_emails}"
-    else
-      flash[:success] = 'Emails sent!'
-    end
-    redirect_to root_path
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_vote
@@ -96,26 +66,4 @@ class VotesController < ApplicationController
     def vote_params
       params.require(:vote).permit(:question, :choices)
     end
-
-    def user_answered?
-      current_user.answers.find_by(:vote_id => params[:id])
-    end
-
-    def check_invited
-      invited = current_user.invitations.find_by(:vote_id => params[:id])
-      unless invited || current_user?(@vote.creator)
-        redirect_to root_path, notice: "Sorry, you weren't invited"
-      end
-    end
-
-    def check_creator
-      unless current_user?(@vote.creator)
-        redirect_to root_path, notice: 'You do not have access to edit/delete.'
-      end
-    end
-
-    def current_user?(user)
-      user == current_user
-    end
-
 end

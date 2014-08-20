@@ -17,13 +17,16 @@
 </div>
 
 <div class="invites">
-<h3>Invites</h3>
+<h3>Invites (<%= @invites.count %>)</h3>
   <hr>
   <%= @invites.map{ |i| i.email }.join(", ") %>
+  <%= link_to 'Invite', invite_vote_path %>
 </div>
 
 
 <div class="nav-links">
   <%= link_to 'Edit', edit_vote_path(@vote) %> |
   <%= link_to 'Back', votes_path %>
-  </div>
+</div>
+
+  

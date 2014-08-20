@@ -2,14 +2,15 @@ Rails.application.routes.draw do
 
   resources :votes do
     member do
-      post :invite
+      get  :invite, to: 'invites#new_many'
+      post :invite, to: 'invites#create_many'
     end
 
     resources :answers
     
   end
 
-  resources :invites
+  # resources :invites
 
   devise_for :users, :controllers => { :registrations => "registrations" }
 

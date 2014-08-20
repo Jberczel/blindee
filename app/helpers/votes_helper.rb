@@ -19,10 +19,4 @@ module VotesHelper
   def current_user?(user)
     user == current_user
   end
-
-  # helper function for unqiue emails for each vote
-  def invited?(email)
-    @vote.invites.find_by(email: email)
-  end
-
 end

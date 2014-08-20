@@ -16,8 +16,8 @@ class RegistrationsController < Devise::RegistrationsController
     super
     @token = params[:invite_token]
     if @token
-        @invite = Invite.find_by_token(@token)
-        @invite.update_attributes(:recipient => resource) if @invite
+      @invite = Invite.find_by_token(@token)
+      @invite.update_attributes(:recipient => resource) if @invite
     end
  end
 

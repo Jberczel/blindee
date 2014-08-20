@@ -1,23 +1,42 @@
 class InvitesController < ApplicationController
+  include InvitesHelper
 
-  def create
-    @invite = Invite.new(invite_params) # Make a new Invite
-    @invite.sender_id = current_user.id # set the sender to the current user
-    if @invite.save
+  def new_many
+  end
 
-      if @invite.recipient
-        InvitationMailer.vote_invitation(@invite, vote_url(@invite.vote)).deliver 
-      else
-        InvitationMailer.new_invitation(@invite, new_user_registration_url(:invite_token => @invite.token)).deliver
-      end  
-      
-      redirect_to root_url, notice: "email sent!"  
+  def create_many
+    @vote = Vote.find(params[:id])
+    emails = params[:invite_emails].split(/,|\r\n|\n/)
+    invalid_emails = []
+
+    emails.each do |email|
+      email = email.strip
+
+      unless invited?(email) 
+        @invite = Invite.new(:sender_id => current_user.id, :email => email, :vote => @vote)
+        if @invite.save && @invite.recipient 
+          link = vote_url(@vote)
+          InvitationMailer.vote_invitation(@invite, link).deliver!
+        elsif @invite.save
+          link = new_user_registration_url(:invite_token => @invite.token)
+          InvitationMailer.new_invitation(@invite, link).deliver!
+        else
+          invalid_emails << email
+        end
+      end
     end
+
+    if invalid_emails.any?
+      flash[:notice] = "Not all emails sent: #{invalid_emails}"
+    else
+      flash[:success] = 'Emails sent!'
+    end
+    redirect_to root_path
   end
 
   private
     def invite_params
-      params.require(:invite).permit(:email, :vote_id)
+      params.require(:invite).permit(:email)
     end
 
 end
