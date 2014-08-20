@@ -18,7 +18,7 @@ class AnswersController < ApplicationController
     @answer.user_id = current_user.id
     if @answer.save
       flash[:success] = 'Thanks, your vote was cast.'
-      redirect_to vote_answers_path
+      redirect_to root_path
     end
   end
 
