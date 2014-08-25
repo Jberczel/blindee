@@ -1,4 +1,4 @@
-.votes {
+.votes, .invites {
   @include outer-container;
 
   hr {
@@ -9,16 +9,55 @@
     margin-bottom: .75em;
   }
 
-  .question, .choices, .invites {
-    @include span-columns(6);
-    @include shift(3);
+  // .question,
+  // .choices,
+  // .status {
+  //   @include span-columns(6);
+  //   @include shift(2);
+  // }
+
+  .survey {
+    @include span-columns(5);
+    @include shift(2);
   }
+  
+  .detail {
+    @include span-columns(3);
+    @include omega();
+  }
+
 
   .nav-links {
     @extend .question;
     text-align: center;
     margin-top: 1em;
   }
+
+  .vote-form {
+    @include span-columns(6);
+    @include shift(3);
+    @include media($tablet) {
+      @include span-columns(6);
+      @include shift(1);
+    }
+
+    textarea {
+      @include span-columns(4 of 6);
+      @include media($tablet) {
+        @include span-columns(6 of 6);
+      }
+    }
+
+    input[type="submit"] {
+      @include span-columns(2 of 6);
+      margin-left: 1em;
+      @include media($tablet) {
+        @include span-columns(6 of 6);
+        margin-left: 0;
+      }
+    }
+  }
+
 }
 
 

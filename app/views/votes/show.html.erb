@@ -1,32 +1,59 @@
 
+<div class="survey">
 
-<div class="question">
-  <h3>Question</h3>
-  <hr>
-  <p><%= @vote.question %></p>
+    <h3>Question</h3>
+    <hr>
+    <p><%= @vote.question %></p>
+
+
+
+  <h3>Choices</h3>
+    <hr>
+    <% if user_answered? %>
+      <%= render 'answer_choices' %>
+    <% else %>
+      <%= render 'answer_form' %>
+    <% end %>
+
+
+  <%= link_to 'Edit', edit_vote_path(@vote) %> |
+  <%= link_to 'Back', votes_path %>
+
+
+
 </div>
 
-<div class="choices">
-<h3>Choices</h3>
+
+  
+
+<div class="detail">
+  
+<div class="status">
+  <h3>Status</h3>
   <hr>
-  <% if user_answered? %>
-    <%= render 'answer_choices' %>
-  <% else %>
-    <%= render 'answer_form' %>
-  <% end %>
+<p><%= @vote.answers.count %> of <%= @invites.count + 1 %> votes</p>
+</div>
+
+<div class="creator">
+  <h3>Created by</h3>
+  <hr>
+  <%= @vote.creator.email %>
 </div>
 
 <div class="invites">
 <h3>Invites (<%= @invites.count %>)</h3>
   <hr>
   <%= @invites.map{ |i| i.email }.join(", ") %>
-  <%= link_to 'Invite', invite_vote_path %>
+
+  <% if current_user?(@vote.creator) %>
+    <%= link_to 'Invite', invite_vote_path %>
+  <% end %>
+</div>
+
 </div>
 
 
-<div class="nav-links">
-  <%= link_to 'Edit', edit_vote_path(@vote) %> |
-  <%= link_to 'Back', votes_path %>
-</div>
 
+
+ 
   

@@ -1,4 +1,4 @@
-<h3>Welcome to Blindy, a website for creating blind vote systems.</h3>
+
 
 <div class="questions">
 <h3>Your Questions (<%= @created_votes.count %>)</h3>
@@ -8,6 +8,12 @@
   <li>
    <div><%= link_to v.question, vote_path(v) %></div>
    <div>Posted <%= time_ago_in_words(v.created_at) %> ago.</div>
+   <div> <%= v.answers.count %> of <%= v.invites.count %></div>
+   <% if v.answers.find_by(user: current_user) %>
+    <div>Voted</div>
+    <% else %>
+    <div> <%= link_to "Vote!", vote_path(v), :class => "button" %></div>
+    <% end %>
 
   </li>
 <% end %>
