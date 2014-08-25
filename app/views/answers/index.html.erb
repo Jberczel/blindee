@@ -8,5 +8,11 @@
   <canvas class="myChart"></canvas>
 
   <!-- <p>count = <%= @results.class %></p> -->
+
+  <h3>Comments</h3>
+  <% @answers.each do |a| %>
+    <blockquote><%= a.comment %></blockquote>
+  <% end %>
+
   <p><%= link_to 'Back', root_path %></p>
 </section>

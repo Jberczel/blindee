@@ -5,8 +5,10 @@
     <%= f.label "#{option}", option do %>
       <%= f.radio_button :answer, option %>
       <%= option %>
-    <% end %>
+    <% end %> 
   <% end %>
+  <hr>
+  <%= f.input :comment %>
   </div>
 
   <div class="form-actions">

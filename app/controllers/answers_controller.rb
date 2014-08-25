@@ -30,6 +30,6 @@ class AnswersController < ApplicationController
     end
 
     def answer_params
-      params.require(:answer).permit(:answer)
+      params.require(:answer).permit(:answer, :comment)
     end
 end
