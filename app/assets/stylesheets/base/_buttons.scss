@@ -1,6 +1,6 @@
 button,
 input[type="submit"] {
-  @extend %button;
+  @extend .button;
   @include appearance(none);
   border: none;
   cursor: pointer;
