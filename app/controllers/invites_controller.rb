@@ -1,5 +1,7 @@
 class InvitesController < ApplicationController
   include InvitesHelper
+  before_action :set_vote
+  before_action :check_creator
 
   def new_many
   end
@@ -37,6 +39,10 @@ class InvitesController < ApplicationController
   private
     def invite_params
       params.require(:invite).permit(:email)
+    end
+
+    def set_vote
+      @vote = Vote.find(params[:id])
     end
 
 end
