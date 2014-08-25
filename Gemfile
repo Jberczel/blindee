@@ -55,3 +55,6 @@ end
 gem 'devise'
 
 gem 'chart-js-rails'
+
+gem 'haml'
+
