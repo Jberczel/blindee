@@ -7,7 +7,7 @@ class InvitesController < ApplicationController
   end
 
   def create_many
-    @vote = Vote.find(params[:id])
+
     emails = params[:invite_emails].split(/,|\r\n|\n/)
     invalid_emails = []
 
