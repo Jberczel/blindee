@@ -8,7 +8,7 @@
   <li>
    <div><%= link_to v.question, vote_path(v) %></div>
    <div>Posted <%= time_ago_in_words(v.created_at) %> ago.</div>
-   <div> <%= v.answers.count %> of <%= v.invites.count %></div>
+   <div> <%= v.answers.count %> of <%= v.invites.count + 1 %></div>
    <% if v.answers.find_by(user: current_user) %>
     <div>Voted</div>
     <% else %>
@@ -28,6 +28,14 @@
 <li>
   <span><%= link_to i.vote.question, vote_path(i.vote) %></span>
   <span>(sent by: <%= i.sender.email %>)</span>
+  <div>Invited <%= time_ago_in_words(i.created_at) %> ago.</div>
+  <div> <%= i.vote.answers.count %> of <%= i.vote.invites.count + 1 %></div>
+   <% if i.vote.answers.find_by(user: current_user) %>
+    <div>Voted</div>
+    <% else %>
+    <div> <%= link_to "Vote!", vote_path(i.vote), :class => "button" %></div>
+    <% end %>
+
 </li>
 <% end %>
 <% end %>
