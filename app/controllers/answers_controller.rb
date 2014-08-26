@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_vote, only: [:index, :create]
+  before_action :check_particpation, only: :index
 
   def index
     @answers = @vote.answers
@@ -8,9 +9,7 @@ class AnswersController < ApplicationController
     h = {}    
     ary = @vote.get_choices
     ary.each{ |a| h[a] = 0 }
-
     @results = h.merge @answers.group(:answer).count
-
   end
 
   def create
@@ -23,7 +22,6 @@ class AnswersController < ApplicationController
   end
 
   private
-
     # Use callbacks to share common setup or constraints between actions.
     def set_vote
       @vote = Vote.find(params[:vote_id])
@@ -31,5 +29,12 @@ class AnswersController < ApplicationController
 
     def answer_params
       params.require(:answer).permit(:answer, :comment)
+    end
+
+    def check_particpation
+      unless @vote.get_participation_rate > 0.75
+        flash[:notice] = "Not enough votes to show results."
+        redirect_to root_path
+      end
     end
 end
