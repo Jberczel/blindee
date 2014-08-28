@@ -17,8 +17,12 @@
   // }
 
   .survey {
-    @include span-columns(5);
-    @include shift(2);
+    @include span-columns(4);
+    @include shift(3);
+
+    label {
+      font-weight: normal;
+    }
   }
   
   .detail {
@@ -55,6 +59,19 @@
         @include span-columns(6 of 6);
         margin-left: 0;
       }
+    }
+
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .invite-form {
+    @include span-columns(6);
+    @include shift(3);
+
+    h1 {
+      margin-bottom: 0.75rem;
     }
   }
 

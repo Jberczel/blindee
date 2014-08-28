@@ -3,12 +3,23 @@
 }
 
 .results {
-  @include span-columns(6);
-  @include shift(3);
-  text-align: center;
+  @include span-columns(4);
+  @include shift(4);
+
 
   h1 {
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  h4 {
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+  }
+
+  blockquote {
+    @include margin(1em 0 0 1em);
+
   }
 
   @include media($tablet) {

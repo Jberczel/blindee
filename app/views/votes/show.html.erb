@@ -15,12 +15,10 @@
       <%= render 'answer_form' %>
     <% end %>
 
-
-  <%= link_to 'Edit', edit_vote_path(@vote) %> |
-  <%= link_to 'Back', votes_path %>
-
-
-
+  <hr>
+  <% if @vote.finished? %>
+    <%= link_to "View Results", vote_answers_path(@vote), class: "button" %>
+  <% end %>
 </div>
 
 
@@ -37,16 +35,16 @@
 <div class="creator">
   <h3>Created by</h3>
   <hr>
-  <%= @vote.creator.email %>
+  <p><%= @vote.creator.email %></p>
 </div>
 
 <div class="invites">
 <h3>Invites (<%= @invites.count %>)</h3>
   <hr>
-  <%= @invites.map{ |i| i.email }.join(", ") %>
+  <p><%= @invites.map{ |i| i.email }.join(", ") %></p>
 
-  <% if current_user?(@vote.creator) %>
-    <%= link_to 'Invite', invite_vote_path %>
+  <% if current_user?(@vote.creator) && !@vote.finished? %>
+    <%= link_to 'Add Invites', invite_vote_path, :class => "button" %>
   <% end %>
 </div>
 

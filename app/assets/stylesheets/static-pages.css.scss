@@ -5,17 +5,54 @@
   h3 {
     font-weight: 300;
     clear: right;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
   }
 
   .questions, .invites, .nav-links {
-    @include span-columns(6);
-    @include shift(3);
+    @include span-columns(4);
+    @include shift(4);
+
   }
 
   li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+    padding: 10px;
+    //border-top: 1px solid #e8e8e8;
+    background: white;
+    @include border-top-radius(15px);
+    @include border-bottom-radius(15px);
+    @include border-left-radius(15px);
+    @include border-right-radius(15px);
+    margin-top: 1em;
+    @include clearfix;
+
+  .question {
+      a {
+        font-size: 1.5em;
+      }
+      float: left;
+    }
+
+
+  }
+
+  .post-time {
+    padding: 0 10px;
+    font-size: 0.8em;
+
+  }
+
+  .vote-count {
+    font-size: 0.8em;
+
+  }
+
+  .button {
+    float: right;
+  }
+
+  .vote-footer {
+    clear: both;
+    font-size: 0.8em;
 
   }
 

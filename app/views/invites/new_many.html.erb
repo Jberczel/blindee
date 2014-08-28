@@ -1,5 +1,8 @@
+<div class="invite-form">
+<h1>Invite your Friends</h1>
 <!-- controller: 'votes', action: 'invite' -->
 <%= form_tag invite_vote_path do %>
 <%= text_area_tag :invite_emails, nil, rows: 5, placeholder: "Enter e-mails separated by commas" %>
 <%= submit_tag "Send Invites", :name => nil, class: "button" %>
 <% end %>
+</div>

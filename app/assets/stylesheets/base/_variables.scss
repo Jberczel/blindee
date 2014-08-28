@@ -21,10 +21,12 @@ $light-yellow: #FFF6BF;
 $light-green: #E6EFC2;
 
 // Background Color
-$base-background-color: white;
+// $base-background-color: #2ECC71;
+$base-background-color: $light-gray;
 
 // Font Colors
 $base-font-color: $dark-gray;
+//$base-accent-color: rgb(52, 73, 94);
 $base-accent-color: $blue;
 
 // Link Colors
