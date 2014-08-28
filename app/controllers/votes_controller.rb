@@ -32,8 +32,8 @@ class VotesController < ApplicationController
    
     if @vote.save
       # flash doesn't appear if I use short-hand style
-      flash[:success] = 'Vote was successfully created.'
-      redirect_to @vote
+      flash[:success] = 'Vote was successfully created. Now invite some voters!'
+      redirect_to invite_vote_path(@vote)
     else
       render :new
     end
