@@ -1,5 +1,5 @@
 SMTP_SETTINGS = {
-  address: 'smtp.mandrillapp.com',, # example: "smtp.sendgrid.net"
+  address: 'smtp.mandrillapp.com', # example: "smtp.sendgrid.net"
   authentication: :plain,
   domain: 'heroku.com', # example: "this-app.com"
   enable_starttls_auto: true,
