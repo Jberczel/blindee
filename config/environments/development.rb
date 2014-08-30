@@ -39,11 +39,11 @@ Rails.application.configure do
   # a parameter is not explcitly permitted but is passed anyway.
   config.action_controller.action_on_unpermitted_parameters = :raise
 
-
-  # config.action_mailer.default_url_options = { host: 'blindy.local' }
-  # config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = SMTP_SETTINGS
+  config.action_mailer.default_url_options = { host: 'blindy.local' }  # required for devise
   config.mandrill_mailer.default_url_options = { :host => 'blindy.local' }
+
+  config.action_mailer.delivery_method = :letter_opener
 
 end
