@@ -59,3 +59,4 @@ gem 'chart-js-rails'
 
 gem 'haml'
 
+gem 'mandrill_mailer'

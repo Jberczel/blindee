@@ -1,5 +1,5 @@
-class InvitationMailer < ActionMailer::Base
-  default from: "from@example.com"
+class InvitationMailer < MandrillMailer::TemplateMailer
+  default from: "contact@blindee.com", from_name: "Blindee"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -7,10 +7,18 @@ class InvitationMailer < ActionMailer::Base
   #   en.invitation_mailer.invitation.subject
   #
   def new_invitation(invite, url)
-    @invite = invite
-    @url = url
-
-    mail to: "#{@invite.email}", subject: 'welcome!!!'
+    mandrill_mail template: 'new_invitation',
+      subject: "You're invited to a Blindee Vote",
+      to: invite.email,
+      vars: {
+        'USER' => invite.email,
+        'QUESTION' => invite.vote.question,
+        'LINK' => url,
+        'LIST_COMPANY' => 'Blindee'
+      },
+      important: true,
+      inline_css: true,
+      async: true
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -19,9 +27,17 @@ class InvitationMailer < ActionMailer::Base
   #   en.invitation_mailer.notification.subject
   #
   def vote_invitation(invite, url)
-    @invite = invite
-    @url = url
-
-    mail to: "#{@invite.email}", subject: "You've got a question: #{@invite.vote.question}"
+    mandrill_mail template: 'vote_invitation',
+      subject: "You're invited to a Blindee Vote",
+      to: invite.email,
+      vars: {
+        'USER' => invite.email,
+        'QUESTION' => invite.vote.question,
+        'LINK' => url,
+        'LIST_COMPANY' => 'Blindee'
+      },
+      important: true,
+      inline_css: true,
+      async: true
   end
 end

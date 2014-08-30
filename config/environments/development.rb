@@ -1,3 +1,4 @@
+require Rails.root.join("config/smtp")
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -39,6 +40,10 @@ Rails.application.configure do
   config.action_controller.action_on_unpermitted_parameters = :raise
 
 
-  config.action_mailer.default_url_options = { host: 'blindy.local' }
-  config.action_mailer.delivery_method = :letter_opener
+  # config.action_mailer.default_url_options = { host: 'blindy.local' }
+  # config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = SMTP_SETTINGS
+  config.mandrill_mailer.default_url_options = { :host => 'blindy.local' }
+
 end

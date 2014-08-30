@@ -9,7 +9,6 @@ class InvitesController < ApplicationController
   def create_many
 
     emails = params[:invite_emails].split(/,|\r\n|\n/)
-    invalid_emails = []
 
     emails.each do |email|
       email = email.strip
@@ -18,22 +17,16 @@ class InvitesController < ApplicationController
         @invite = Invite.new(:sender_id => current_user.id, :email => email, :vote => @vote)
         if @invite.save && @invite.recipient 
           link = vote_url(@vote)
-          InvitationMailer.vote_invitation(@invite, link).deliver!
+          InvitationMailer.vote_invitation(@invite, link).deliver
         elsif @invite.save
           link = new_user_registration_url(:invite_token => @invite.token)
-          InvitationMailer.new_invitation(@invite, link).deliver!
-        else
-          invalid_emails << email
+          InvitationMailer.new_invitation(@invite, link).deliver
         end
       end
     end
 
-    if invalid_emails.any?
-      flash[:notice] = "Not all emails sent: #{invalid_emails}"
-    else
-      flash[:success] = 'Emails sent!'
-    end
-    redirect_to root_path
+    flash[:notice] = 'Emails sent!'
+    redirect_to vote_path(@vote)
   end
 
   private
