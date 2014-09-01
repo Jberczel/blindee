@@ -1,14 +1,17 @@
 
 
 <div class="questions">
-<h3>Your Questions (<%= @created_votes.count %>)</h3>
+<h3>Your Questions <small>(<%= @created_votes.count %>)</small></h3>
 <% if @created_votes %>
 <ul>
 <% @created_votes.each do |v| %>
-  <li>
+  <li class="vote-listing">
   
 
    <div class="question">
+   <% if v.finished? %>
+   <div class="ribbon-wrapper"><div class="ribbon">RESULTS!</div></div>
+   <% end %>
    <%= link_to v.question, vote_path(v) %>
    <div class="vote-count"> <%= v.answers.count %> of <%= v.invites.count + 1 %> votes casted</div>
   
@@ -21,6 +24,7 @@
     <% end %>
 
     <div class="vote-footer">
+    <%= link_to "View", vote_path(v) %>
       <%= link_to "Invite", invite_vote_path(v) %>
      <%= link_to 'Delete', v, method: :delete, data: { confirm: 'Are you sure?' } %> 
     </div>
@@ -33,39 +37,30 @@
 </div>
 
 <div class="invites">
-<h3>Invitations (<%= @invitations.count %>)</h3>
+<h3>Invitations <small>(<%= @invitations.count %>)</small></h3>
 <% if @invitations %>
 <ul>
 <% @invitations.each do |i| %> 
-<li>
-   <% if i.vote.answers.find_by(user: current_user) %>
+<li class="vote-listing">
+    <% if i.vote.finished? %>
+      <div class="ribbon-wrapper"><div class="ribbon">RESULTS!</div></div>
+    <% end %>
+   
+  <div class="question">
+    <%= link_to i.vote.question, vote_path(i.vote) %>
+    <div class="vote-count"> 
+      <%= i.vote.answers.count %> of <%= i.vote.invites.count + 1 %> votes casted
+    </div>
+  </div>
+
+  <% if voted?(i.vote.answers) %>
     <% else %>
     <div> <%= link_to "Vote!", vote_path(i.vote), :class => "button" %></div>
     <% end %>
-  <div class="question">
-  <%= link_to i.vote.question, vote_path(i.vote) %>
-   <div class="vote-count"> 
-   <%= i.vote.answers.count %> of <%= i.vote.invites.count + 1 %> votes casted
-   </div>
-  </div>
-
-      <div class="vote-footer">
-      <% if i.vote.finished? %>
-      <%= link_to "Results", vote_answers_path(i.vote) %>
-      <% end %>
-
-    </div>
- 
-
 
 </li>
   <span class="post-time">Invited <%= time_ago_in_words(i.created_at) %> ago by <%= i.sender.email %></span>
 <% end %>
 <% end %>
 <ul>
-</div>
-
-<div class="nav-links">
-<br>
-<%= link_to "View All Voting", votes_path %> | <%= link_to 'New Vote', new_vote_path %>
 </div>

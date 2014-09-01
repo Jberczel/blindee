@@ -1,33 +1,26 @@
-<h1>Listing votes</h1>
+
+<div class="vote-list">
+<h2>Listing votes</h2>
+<hr>
+<h4>This section will eventually be for public votes, where any blindee user can vote.</h4>
 
 <table>
   <thead>
     <tr>
       <th>Question</th>
-      <th>Author</th>
-      <th>Status</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Creator</th>
+      <th class="status">Status</th>
     </tr>
   </thead>
 
   <tbody>
     <% @votes.each do |vote| %>
       <tr>
-        <td><%= vote.question %></td>
+        <td><%= link_to vote.question, vote %></td>
         <td><%= vote.creator.email %></td>
-        <td><%= vote.answers.count %> of <%= vote.invites.count + 1 %></td>
-        <td><%= link_to 'Vote', vote %></td>
-        <td><%= link_to 'Results', vote_answers_path(vote) %></td>
-        <td><%= link_to 'Edit', edit_vote_path(vote) %></td>
-        <td><%= link_to 'Destroy', vote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="status"><%= vote.answers.count %> of <%= vote.invites.count + 1 %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Vote', new_vote_path %> | <%= link_to 'Back', root_path %>
+</div>

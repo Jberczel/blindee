@@ -15,7 +15,6 @@
       <%= render 'answer_form' %>
     <% end %>
 
-  <hr>
   <% if @vote.finished? %>
     <%= link_to "View Results", vote_answers_path(@vote), class: "button" %>
   <% end %>
@@ -39,7 +38,7 @@
 </div>
 
 <div class="invites">
-<h3>Invites (<%= @invites.count %>)</h3>
+<h3>Invites <small>(<%= @invites.count %>)</small></h3>
   <hr>
   <p><%= @invites.map{ |i| i.email }.join(", ") %></p>
 

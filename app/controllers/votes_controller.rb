@@ -35,6 +35,7 @@ class VotesController < ApplicationController
       flash[:success] = 'Vote was successfully created. Now invite some voters!'
       redirect_to invite_vote_path(@vote)
     else
+      flash[:error] = "Uh oh."
       render :new
     end
   end
@@ -53,7 +54,7 @@ class VotesController < ApplicationController
   # DELETE /votes/1
   def destroy
     @vote.destroy
-    redirect_to votes_url, notice: 'Vote was successfully destroyed.'
+    redirect_to root_path, notice: 'Vote was successfully destroyed.'
   end
 
   private

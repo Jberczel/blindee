@@ -9,7 +9,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= body_class %>">
-  <%= render "sign_in" %>
+<%= render "sign_in" %>
+  <%= render "header" %>
+  
+
   <%= render "flashes" -%>
   <%= yield %>
   <%= render "javascript" %>

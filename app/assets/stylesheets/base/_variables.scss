@@ -19,15 +19,27 @@ $light-gray: #DDD;
 $light-red: #FBE3E4;
 $light-yellow: #FFF6BF;
 $light-green: #E6EFC2;
+$light-purple: #dcbfdb;
+$dark-purple: #a54399;
+$olive: #E7F1EC;
+
+$light-blonde: #E3D0B6;
+$dark-blonde: #BA9249;
+
+$light-blue: #a7d6f0;
+$dark-blue: #0093d0;
 
 // Background Color
 // $base-background-color: #2ECC71;
 $base-background-color: $light-gray;
 
 // Font Colors
-$base-font-color: $dark-gray;
+//$base-font-color: $dark-gray;
+$base-font-color: transparentize($dark-gray, 0.3);;
+
 //$base-accent-color: rgb(52, 73, 94);
-$base-accent-color: $blue;
+//$base-accent-color: $blue;
+$base-accent-color:$dark-blue;
 
 // Link Colors
 $base-link-color: $base-accent-color;

@@ -1,5 +1,6 @@
-.devise-sessions-new,
-.registrations-new {
+.devise-sessions,
+.registrations,
+.devise-passwords {
   @include outer-container;
   border: 1px solid $base-border-color;
   @include border-top-radius(5px);
@@ -7,21 +8,85 @@
   @include border-left-radius(5px);
   @include border-right-radius(5px);
 
+  .responsive {
+    @include media($tablet) {
+    @include span-columns(4);
+    @include shift(2);
+    }
+
+    @include media($mobile) {
+    @include span-columns(4);
+    @include shift(0);
+    padding: 0 1em;
+    }
+  }
+  
+  .header {
+    @include span-columns(4);
+    @include shift(4);
+    @include media($tablet) {
+    @include span-columns(4);
+    @include shift(2);
+    }
+
+    @include media($mobile) {
+    @include span-columns(4);
+    @include shift(0);
+    padding: 0 1em;
+    } 
+    
+    opacity: .7;
+    margin-top: 60px;
+  }  
+}
+
+.signin-form {
+  @include span-columns(4);
+  @include shift(4);
+  @extend .responsive;
+
+
+
+  h1, h2 {
+    margin-bottom: 12px;
+    font-weight: 300;
+    text-align: center;
+    color: $base-font-color;
+
+  }
+
   label {
     display: inline;
     font-weight: 500;
-    color: $medium-gray;
+    color: $base-font-color;
+  }
+
+  input[type="email"], input[type="password"] {
+    margin-top: 1em;
+    margin-bottom: 0;
+  }
+
+
+
+  .button, .user_remember_me {
+    @include span-columns(2 of 4);
+    margin-top: 1em;
+  }
+
+  .devise-links {
+    @include span-columns(4 of 4);
+    font-size: .8em;
+    margin-top: 2rem;
+    text-align: center;
   }
 }
 
-.user-form {
-  @include span-columns(4);
-  @include shift(4);
-  @include margin(2em null 2em null);
-
-  h2 {
-    margin-bottom: 12px;
-    font-weight: 300
+.signup-form, .pword-form {
+  @extend .signin-form;
+  .button {
+    @include span-columns(4 of 4);
   }
 }
+
+
 

@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_vote, only: [:index, :create]
+  before_action :check_vote, only: :create
   before_action :check_particpation, only: :index
 
   def index
@@ -36,5 +37,20 @@ class AnswersController < ApplicationController
         flash[:notice] = "Not enough votes to show results."
         redirect_to root_path
       end
+    end
+
+     # current user already answer?
+    def voted?(answers)
+      answers.find_by(user: current_user)
+    end
+
+    def check_vote
+      if voted?(@vote.answers)
+        flash[:notice] = "Sorry, you've already voted."
+        redirect_to root_path
+    end
+
+   
+
     end
 end

@@ -10,11 +10,7 @@ class Invite < ActiveRecord::Base
   validates :email, presence: true, :email => true
   validates :vote_id, presence: true
 
-
-
-
   private
-
     def generate_token
       self.token = Digest::SHA1.hexdigest([self.vote_id, Time.now, rand].join)
     end

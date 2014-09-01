@@ -5,6 +5,7 @@
 @import 'neat';
 @import 'base/base';
 
+@import 'header';
 @import 'devise';
 @import 'static-pages';
 @import 'votes';
@@ -13,11 +14,21 @@
 
 #sign_in {
   float: right;
-  margin-bottom: 1em;
+  font-size: 0.8em;
+
 }
 
 #flash {
-  clear: right;
+  //clear: right;
+  //margin-bottom: 0;
+  //@include span-columns(4);
+  //@include shift(4);
+}
+
+.error {
+  color: red;
+  font-size: 0.8em;
+  padding-left: 0.5rem;
 }
 
 

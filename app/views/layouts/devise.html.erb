@@ -9,7 +9,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= body_class %>">
-  <%= render "flashes" %>
+  <%= link_to(image_tag('logo.png'), root_path, class: "header") %>
   <%= yield %>
   <%= render "javascript" %>
 </body>

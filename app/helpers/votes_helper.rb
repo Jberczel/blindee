@@ -19,4 +19,8 @@ module VotesHelper
   def current_user?(user)
     user == current_user
   end
+
+  def voted?(answers)
+    answers.find_by(user: current_user)
+  end
 end

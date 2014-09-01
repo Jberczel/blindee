@@ -23,10 +23,15 @@
   }
 
   @include media($tablet) {
-    @include span-columns(6);
-    @include shift(1);
+      @include span-columns(4);
+      @include shift(2);
+    }
 
-  }
+    @include media($mobile) {
+      @include span-columns(4);
+      @include shift(0);
+      padding: 0 1em;
+    }
 }
 
 
