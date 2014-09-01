@@ -8,7 +8,7 @@ class InvitesController < ApplicationController
 
   def create_many
 
-    emails = params[:invite_emails].split(/,|\r\n|\n/)
+    emails = params[:invite_emails].split(/,|\r\n|\n/)[0..30] # only 30 invites
 
     emails.each do |email|
       email = email.strip
