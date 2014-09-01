@@ -5,6 +5,9 @@ class Vote < ActiveRecord::Base
   has_many :answers, :dependent => :destroy
   # has_many :voters, :through => :answers, :source => :user
 
+  validates :question, presence: true, length: { maximum: 140 }
+  validates :choices, presence: true, length: { maximum: 140 }
+
   before_save :add_quote
 
   def get_choices
@@ -20,6 +23,7 @@ class Vote < ActiveRecord::Base
   end
 
   private
+    # add quesiton mark to question if user forgets
     def add_quote
       self.question << '?' unless self.question.ends_with?('?')
     end
