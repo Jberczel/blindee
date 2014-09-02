@@ -10,10 +10,14 @@
 
    <div class="question">
    <% if v.finished? %>
-   <div class="ribbon-wrapper"><div class="ribbon">RESULTS!</div></div>
+   <div class="ribbon-wrapper"><div class="ribbon"><%= link_to "RESULTS!", vote_answers_path(v) %></div></div>
    <% end %>
    <%= link_to v.question, vote_path(v) %>
-   <div class="vote-count"> <%= v.answers.count %> of <%= v.invites.count + 1 %> votes casted</div>
+   <div class="vote-count"> 
+   <%= v.answers.count %> of <%= v.invites.count + 1 %> votes
+   (required: <%=((v.invites.count + 1) * 0.75).ceil %>)
+
+   </div>
   
    </div>
    
@@ -43,13 +47,18 @@
 <% @invitations.each do |i| %> 
 <li class="vote-listing">
     <% if i.vote.finished? %>
-      <div class="ribbon-wrapper"><div class="ribbon">RESULTS!</div></div>
+      <div class="ribbon-wrapper">
+      <div class="ribbon">
+        <%= link_to "RESULTS!", vote_answers_path(i.vote) %>
+      </div>
+      </div>
     <% end %>
    
   <div class="question">
     <%= link_to i.vote.question, vote_path(i.vote) %>
     <div class="vote-count"> 
-      <%= i.vote.answers.count %> of <%= i.vote.invites.count + 1 %> votes casted
+      <%= i.vote.answers.count %> of <%= i.vote.invites.count + 1 %> votes
+      (required: <%=((i.vote.invites.count + 1) * 0.75).ceil %>)
     </div>
   </div>
 
@@ -57,6 +66,12 @@
     <% else %>
     <div> <%= link_to "Vote!", vote_path(i.vote), :class => "button" %></div>
     <% end %>
+
+   <div class="vote-footer">
+    <%= link_to "View", vote_path(i.vote) %>
+    </div>
+
+  
 
 </li>
   <span class="post-time">Invited <%= time_ago_in_words(i.created_at) %> ago by <%= i.sender.email %></span>
