@@ -1,6 +1,6 @@
 .votes, .invites {
   @include outer-container;
-  @include media($mobile) { padding: 1em; }
+  @include media($mobile) { padding: 0.5em; }
 
 
   hr {

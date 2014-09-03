@@ -1,6 +1,6 @@
 .static_pages {
   @include outer-container;
-  @include media($mobile) { padding: 1em; }
+  @include media($mobile) { padding: 0.5em; }
 
   h3 {
     font-weight: 300;
@@ -20,7 +20,7 @@
     @include media($mobile) {
       @include span-columns(4);
       @include shift(0);
-      padding: 0 1em;
+      padding: 0;
     }
 
 
@@ -51,6 +51,8 @@
   }
 
   .vote-listing {
+
+
     padding: 10px;
 
     //border-top: 1px solid #e8e8e8;
@@ -143,8 +145,8 @@
     @include size($ribbon-size);
     overflow: hidden;
     position: absolute;
-    top: -1px;
-    right: -1px;
+    top: -4px;
+    right: -4px;
 
     .ribbon {
       font-size: .8em;

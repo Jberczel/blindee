@@ -38,6 +38,7 @@
       border-top-left-radius: $base-border-radius; 
       border-top-right-radius: $base-border-radius; 
       border-top: 0;
+
     }
 
     &:last-child a.tab-link {
@@ -84,6 +85,11 @@
         border: $tab-border;
         border-bottom: 1px solid $tab-active-background;
         margin-bottom: -1px;
+      }
+      
+      //adjust header spacing for mobile view
+      @include media($mobile) {
+        padding-bottom: 0;
       }
     }
   }
