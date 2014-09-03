@@ -25,7 +25,7 @@ class InvitesController < ApplicationController
       end
     end
 
-    flash[:notice] = 'Emails sent!'
+    flash[:success] = 'Emails sent!'
     redirect_to vote_path(@vote)
   end
 
