@@ -1,13 +1,15 @@
 
 <div class="survey">
 
-    <h3>Question</h3>
-    <hr>
-    <p><%= @vote.question %></p>
+    <h3><%= @vote.question %></h3>
+    
+    <% if details?(@vote) %>
+      <div class="question-details">
+        <%= markdown(@vote.details) %>
+      </div>
+    <% end %>
 
-
-
-  <h3>Choices</h3>
+  <h4>choices</h4>
     <hr>
     <% if user_answered? %>
       <%= render 'answer_choices' %>
@@ -26,19 +28,19 @@
 <div class="detail">
   
 <div class="status">
-  <h3>Status</h3>
+  <h4>status</h4>
   <hr>
 <p><%= @vote.answers.count %> of <%= @invites.count + 1 %> votes</p>
 </div>
 
 <div class="creator">
-  <h3>Created by</h3>
+  <h4>created by</h4>
   <hr>
   <p><%= @vote.creator.email %></p>
 </div>
 
 <div class="invites">
-<h3>Invites <small>(<%= @invites.count %>)</small></h3>
+<h4>invites (<%= @invites.count %>)</h4>
   <hr>
   <p><%= @invites.map{ |i| i.email }.join(", ") %></p>
 

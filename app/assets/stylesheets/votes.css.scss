@@ -11,13 +11,6 @@
     margin-bottom: .75em;
   }
 
-  // .question,
-  // .choices,
-  // .status {
-  //   @include span-columns(6);
-  //   @include shift(2);
-  // }
-
   .survey {
     @include span-columns(4);
     @include shift(4);
@@ -58,6 +51,20 @@
 
     .button {
       background-color: $dark-purple;
+    }
+
+    h4 {
+      margin-top: 0.5em;
+    }
+
+    .question-details {
+      margin-top: 0.5em;
+      border: 1px solid $light-gray;
+      @include border-top-radius(10px);
+      @include border-bottom-radius(10px);
+      @include border-left-radius(10px);
+      @include border-right-radius(10px);
+      padding: 0.5em;
     }
   }
   

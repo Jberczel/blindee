@@ -1,13 +1,8 @@
 <%= minimal_form_for(@vote) do |f| %>
 
-  <div class="field">
     <%= f.input :question %>
-  </div>
-  <div class="field">
+    <%= f.text_area :details, rows: 3, placeholder: "Add question details (optional)" %>
     <%= f.text_area :choices, rows: 5, placeholder: "Enter answers on each line..." %>
-  </div>
-
-  <div class="actions">
     <%= f.submit %>
-  </div>
+
 <% end %>
