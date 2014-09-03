@@ -1,4 +1,7 @@
 en:
+  titles:
+    application: Blindee
+
   date:
     formats:
       default:
