@@ -55,6 +55,7 @@
 
     &:hover {
       color: $centered-navigation-color-hover;
+
     }
   }
 
@@ -114,13 +115,10 @@
     a {
       color: $centered-navigation-color;
       display: inline-block;
-
+      font-weight: 800;
 
       &:hover {
-
-
-
-
+        text-decoration: underline;
         color: $centered-navigation-color-hover;
       }
     }
