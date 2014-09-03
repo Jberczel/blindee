@@ -89,4 +89,6 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options =   { :host => 'blindee.herokuapp.com' } # required for devise
   config.mandrill_mailer.default_url_options = { :host => 'blindee.herokuapp.com' }
+
+  config.force_ssl = true
 end
