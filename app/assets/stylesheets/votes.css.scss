@@ -1,5 +1,6 @@
 .votes, .invites {
   @include outer-container;
+  @include media($mobile) { padding: 1em; }
 
 
   hr {
@@ -52,6 +53,7 @@
         border-color: $dark-purple;
         box-shadow: $dark-purple;
       }
+
     }
 
     .button {

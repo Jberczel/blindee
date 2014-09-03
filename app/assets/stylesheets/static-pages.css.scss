@@ -1,5 +1,6 @@
 .static_pages {
   @include outer-container;
+  @include media($mobile) { padding: 1em; }
 
   h3 {
     font-weight: 300;
@@ -9,25 +10,35 @@
   }
 
   .questions, .invites, .nav-links {
-    @include span-columns(4);
-    @include shift(4);
-
+    @include span-columns(4 of 8);
+    @include shift(2 of 8);
     @include media($tablet) {
-    @include span-columns(4);
-    @include shift(2);
+      @include span-columns(6 of 8);
+      @include shift(1 of 8);
     }
 
-  @include media($mobile) {
-    @include span-columns(4);
-    @include shift(0);
-    padding: 0 1em;
-  }
+    @include media($mobile) {
+      @include span-columns(4);
+      @include shift(0);
+      padding: 0 1em;
+    }
 
 
   }
 
   .contact, .about {
-    @extend .questions;
+   @include span-columns(4);
+    @include shift(4);
+    @include media($tablet) {
+      @include span-columns(4);
+      @include shift(2);
+    }
+
+    @include media($mobile) {
+      @include span-columns(4);
+      @include shift(0);
+      padding: 0 1em;
+    }
     background: white;
     @include border-top-radius(15px);
     @include border-bottom-radius(15px);
@@ -91,6 +102,17 @@
     clear: both;
     font-size: 0.8em;
 
+    a { 
+      color: $dark-blue;
+      font-weight: 500;
+      padding-right: 3px;
+
+      &:hover {
+        text-decoration: underline;
+
+      }
+    }
+
   }
 
   #flash {
@@ -108,10 +130,11 @@
       @include shift(0);
       padding: 0 1em;
     }
-    #flash_notice, #flash_success,
-    #flash_alert {
-      margin-bottom: 0;
-    }
+    // need margin again undearneath tabs
+    //#flash_notice, #flash_success,
+    //#flash_alert {
+    //  margin-bottom: 0;
+    //}
   }
 
   .ribbon-wrapper {
@@ -144,6 +167,7 @@
 
   small {
     font-size: 0.8em;
+    font-weight: bold;
   }
 
 }
