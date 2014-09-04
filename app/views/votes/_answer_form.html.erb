@@ -1,6 +1,6 @@
 <%= simple_form_for([@vote, @answer]) do |f| %>
   
-  <div class="form-inputs">
+
     <%- @vote.get_choices.each do |option| %>
     <%= f.label "#{option}", option do %>
       <%= f.radio_button :answer, option %>
@@ -9,9 +9,9 @@
   <% end %>
   <hr>
   <%= f.input :comment, label: "comment (optional)" %>
-  </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Submit Vote" %>
-  </div>
+  <button type="submit" classs="button">
+    <%= icon('check', 'Submit Vote') %>
+  </button>
+
 <% end %>

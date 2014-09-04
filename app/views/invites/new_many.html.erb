@@ -3,6 +3,10 @@
 <!-- controller: 'votes', action: 'invite' -->
 <%= form_tag invite_vote_path do %>
 <%= text_area_tag :invite_emails, nil, rows: 5, placeholder: "Enter e-mails separated by commas" %>
-<%= submit_tag "Send Invites", :name => nil, class: "button" %>
+
+
+<button type="submit" classs="button">
+  <%= icon('mail-forward', 'Send Invites') %>
+</button>
 <% end %>
 </div>

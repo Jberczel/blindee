@@ -14,7 +14,7 @@
               <% if i.vote.finished? %>
                 <div class="ribbon-wrapper">
                 <div class="ribbon">
-                  <%= link_to "RESULTS!", vote_answers_path(i.vote) %>
+                  <%= link_to "Results!", vote_answers_path(i.vote) %>
                 </div>
                 </div>
               <% end %>
@@ -61,7 +61,7 @@
 
          
          <% if v.finished? %>
-         <div class="ribbon-wrapper"><div class="ribbon"><%= link_to "RESULTS!", vote_answers_path(v) %></div></div>
+         <div class="ribbon-wrapper"><div class="ribbon"><%= link_to "Results!", vote_answers_path(v) %></div></div>
          <% end %>
          <div class="question">
          <%= link_to v.question, vote_path(v) %>

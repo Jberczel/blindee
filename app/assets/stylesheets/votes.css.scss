@@ -108,7 +108,7 @@
     @include shift(4);
     
     
-    input[type="submit"] {
+    .button, input[type="submit"] {
       @include span-columns(4 of 4);
     }
 

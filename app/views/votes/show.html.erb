@@ -45,7 +45,7 @@
   <p><%= @invites.map{ |i| i.email }.join(", ") %></p>
 
   <% if current_user?(@vote.creator) && !@vote.finished? %>
-    <%= link_to 'Add Invites', invite_vote_path, :class => "button" %>
+    <%= link_to icon('plus', 'Add Invites'), invite_vote_path, :class => "button" %>
   <% end %>
 </div>
 
