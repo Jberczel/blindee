@@ -17,6 +17,7 @@ $blue: #477DCA;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #DDD;
+$lighter-gray: #F0F0F0; 
 $light-red: #FBE3E4;
 $light-yellow: #FFF6BF;
 $light-green: #E6EFC2;
@@ -32,11 +33,11 @@ $dark-blue: #0093d0;
 
 // Background Color
 // $base-background-color: #2ECC71;
-$base-background-color: $light-gray;
+$base-background-color: $lighter-gray;
 
 // Font Colors
 //$base-font-color: $dark-gray;
-$base-font-color: transparentize($dark-gray, 0.3);;
+$base-font-color: transparentize($dark-gray, 0.3);
 
 //$base-accent-color: rgb(52, 73, 94);
 //$base-accent-color: $blue;

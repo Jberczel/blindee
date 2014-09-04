@@ -1,5 +1,5 @@
 .accordion-tabs-minimal {
-  $tab-border-color: white;
+  $tab-border-color: transparentize($dark-gray, 0.7);
   $tab-border: 1px solid $tab-border-color;
   $tab-content-background: $base-background-color;
   $tab-active-background: $tab-content-background;

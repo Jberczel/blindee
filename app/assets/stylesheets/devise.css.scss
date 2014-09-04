@@ -2,11 +2,12 @@
 .registrations,
 .devise-passwords {
   @include outer-container;
-  border: 1px solid $base-border-color;
-  @include border-top-radius(5px);
-  @include border-bottom-radius(5px);
-  @include border-left-radius(5px);
-  @include border-right-radius(5px);
+  //not sure what this was here for
+  //border: 1px solid $base-border-color;
+  //@include border-top-radius(5px);
+  //@include border-bottom-radius(5px);
+  //@include border-left-radius(5px);
+  //@include border-right-radius(5px);
 
   .responsive {
     @include media($tablet) {
