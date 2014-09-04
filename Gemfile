@@ -63,3 +63,4 @@ gem 'haml'
 gem 'mandrill_mailer'
 
 gem 'redcarpet'
+gem 'font-awesome-sass', '~> 4.2.0'

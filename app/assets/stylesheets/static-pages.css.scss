@@ -104,10 +104,14 @@
     clear: both;
     font-size: 0.8em;
 
+    &:hover { 
+      a { color: $dark-blue; }
+    }
+
     a { 
-      color: $dark-blue;
+      color: $light-blue;
       font-weight: 500;
-      padding-right: 3px;
+      padding-right: 0.5em;
 
       &:hover {
         text-decoration: underline;

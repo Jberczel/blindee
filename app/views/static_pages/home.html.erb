@@ -29,11 +29,14 @@
 
             <% if voted?(i.vote.answers) %>
               <% else %>
-              <div> <%= link_to "Vote!", vote_path(i.vote), :class => "button" %></div>
+              <%= link_to icon('check-square-o', 'vote!'), vote_path(i.vote), :class => "button" %>
               <% end %>
 
              <div class="vote-footer">
-              <%= link_to "View", vote_path(i.vote) %>
+              <%= link_to icon('eye', 'View'), vote_path(i.vote) %>
+              <% if i.vote.finished? %>
+                <%= link_to icon('bar-chart','Results'), vote_answers_path(i.vote) %>
+              <% end %>
               </div>
           </li>
             <span class="post-time">Invited <%= time_ago_in_words(i.created_at) %> ago by <%= i.sender.email %></span>
@@ -73,13 +76,19 @@
 
          <% if v.answers.find_by(user: current_user) %> 
           <% else %>
-          <div> <%= link_to "Vote!", vote_path(v), :class => "button" %></div>
+          <div> 
+
+            <%= link_to icon('check-square-o', 'vote!'), vote_path(v), :class => "button" %>
+            </div>
           <% end %>
 
           <div class="vote-footer">
-          <%= link_to "View", vote_path(v) %>
-            <%= link_to "Invite", invite_vote_path(v) %>
-           <%= link_to 'Delete', v, method: :delete, data: { confirm: 'Are you sure?' } %> 
+          <%= link_to icon('eye', 'View'), vote_path(v) %>
+            <%= link_to icon("envelope-o", "Invite"), invite_vote_path(v) %>
+           <%= link_to icon('trash-o', 'Delete'), v, method: :delete, data: { confirm: 'Are you sure?' } %> 
+           <% if v.finished? %>
+                <%= link_to icon('bar-chart', 'Results'), vote_answers_path(v) %>
+              <% end %>
           </div>
 
         </li>
