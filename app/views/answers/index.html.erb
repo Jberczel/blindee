@@ -9,7 +9,7 @@
 
   <!-- <p>count = <%= @results.class %></p> -->
 
-  <h4>Comments</h4>
+  <h4><%= icon('comment', 'Comments') %></h4>
   <% @answers.each do |a| %>
     <blockquote><%= a.comment %></blockquote>
   <% end %>
