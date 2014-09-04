@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require icheck
+//= require 'icheck'
 //= require Chart
 //= require_tree .
 
