@@ -49,7 +49,7 @@ $(document).ready(function() {
     }
   });
 
-    icheck();
+  icheck();
 });
 
 function icheck(){
