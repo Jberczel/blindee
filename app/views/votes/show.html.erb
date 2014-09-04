@@ -9,8 +9,8 @@
       </div>
     <% end %>
 
-  <h4><%= icon('check-square-o', 'choices') %></h4>
-    <hr>
+  <h4 class="choices-header"><%= icon('check-circle-o', 'choices') %></h4>
+  <hr>
     <% if user_answered? %>
       <%= render 'answer_choices' %>
     <% else %>
@@ -28,7 +28,7 @@
 <div class="detail">
   
 <div class="status">
-  <h4><%= icon('circle-o-notch', 'status', class: 'fa-spin') %></h4>
+  <h4><%= icon('circle-o-notch', 'status') %></h4>
   <hr>
 <p><%= @vote.answers.count %> of <%= @invites.count + 1 %> votes</p>
 </div>

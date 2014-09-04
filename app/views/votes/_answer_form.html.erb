@@ -1,16 +1,16 @@
 <%= simple_form_for([@vote, @answer]) do |f| %>
   
-
+  <div class="radios">
     <%- @vote.get_choices.each do |option| %>
     <%= f.label "#{option}", option do %>
-      <%= f.radio_button :answer, option %>
-      <%= option %>
+      <%= f.radio_button :answer, option, class: "icheck-me", data: { skin: "square", color: "pink" } %> <%= option %>
     <% end %> 
   <% end %>
-  <hr>
+  </div>
+
   <%= f.input :comment, label: "comment (optional)" %>
 
-  <button type="submit" classs="button">
+  <button type="submit">
     <%= icon('check', 'Submit Vote') %>
   </button>
 
