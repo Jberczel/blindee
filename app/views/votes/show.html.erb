@@ -18,7 +18,7 @@
     <% end %>
 
   <% if @vote.finished? %>
-    <%= link_to "View Results", vote_answers_path(@vote), class: "button" %>
+    <%= link_to icon("bar-chart", "View Results"), vote_answers_path(@vote), class: "button" %>
   <% end %>
 </div>
 
