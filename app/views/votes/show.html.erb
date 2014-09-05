@@ -17,7 +17,7 @@
       <%= render 'answer_form' %>
     <% end %>
 
-  <% if @vote.finished? %>
+  <% if @vote.finished? && voted?(@vote.answers) %>
     <%= link_to icon("bar-chart", "View Results"), vote_answers_path(@vote), class: "button" %>
   <% end %>
 </div>

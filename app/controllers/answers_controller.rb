@@ -1,6 +1,8 @@
 class AnswersController < ApplicationController
   before_action :set_vote, only: [:index, :create]
   before_action :check_vote, only: :create
+
+  # check if answered as well
   before_action :check_particpation, only: :index
 
   def index
@@ -36,7 +38,7 @@ class AnswersController < ApplicationController
     end
 
     def check_particpation
-      unless @vote.get_participation_rate >= 0.75
+      unless @vote.finished? && voted?(@vote.answers) # user has to vote to see results.
         flash[:notice] = "Not enough votes to show results."
         redirect_to root_path
       end
