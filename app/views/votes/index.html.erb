@@ -4,23 +4,20 @@
 <hr>
 <h4>This section will eventually be for public votes, where all blindee users can vote.</h4>
 
-<table>
-  <thead>
-    <tr>
-      <th>Question</th>
-      <th>Creator</th>
-      <th class="status">Status</th>
-    </tr>
-  </thead>
-
-  <tbody>
+<ul>
     <% @votes.each do |vote| %>
-      <tr>
-        <td><%= link_to vote.question, vote %></td>
-        <td><%= vote.creator.email %></td>
-        <td class="status"><%= vote.answers.count %> of <%= vote.invites.count + 1 %></td>
-      </tr>
+        <li class="vote-listing">
+        <div class="question">
+          <%= link_to vote.question, vote %>
+          <div class="vote-count">
+            <%= vote.answers.count %> of <%= vote.invites.count + 1 %>
+          </div>
+        </div>
+        </li>
+        <span class="post-time"><%= time_ago_in_words(vote.created_at) %> ago by <%= vote.creator.email %></span>
     <% end %>
-  </tbody>
-</table>
+
+</ul>
+
+
 </div>

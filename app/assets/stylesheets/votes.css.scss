@@ -178,7 +178,7 @@
   }
 
   .vote-list {
-    @include span-columns(5);
+    @include span-columns(4);
     @include shift(4);
 
     @include media($tablet) {
@@ -197,6 +197,46 @@
 
   small {
     font-size: 0.8em;
+  }
+
+  .vote-listing {
+
+
+    padding: 10px;
+
+    //border-top: 1px solid #e8e8e8;
+    //border: 2px solid $dark-blue;
+    position: relative;
+    background: white;
+    @include border-top-radius(15px);
+    @include border-bottom-radius(15px);
+    @include border-left-radius(15px);
+    @include border-right-radius(15px);
+    margin-top: 1em;
+    @include clearfix;
+
+    box-shadow: 0 0 3px 3px white;
+
+  .question {
+      a {
+        font-size: 1.5em;
+        color: $base-font-color;
+        line-height: 0.75em;
+
+        &:hover {
+          color: darken($base-font-color, 30%);
+        }
+      }
+      float: left;
+    }
+
+
+  }
+
+  .post-time {
+    padding: 0 10px;
+    font-size: 0.8em;
+
   }
 
 }
