@@ -145,7 +145,7 @@
 
   .ribbon-wrapper {
     $ribbon-size: 85px;
-    $ribbon-background: $dark-blonde;
+    $ribbon-background: transparentize($dark-blue, .30);
     @include size($ribbon-size);
     overflow: hidden;
     position: absolute;

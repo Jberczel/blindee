@@ -3,7 +3,7 @@
 
 <ul class="accordion-tabs-minimal">
   <li class="tab-header-and-content">
-    <a href="#" class="tab-link is-active"><%= icon("envelope") %> Invites  <small>(<%= @invitations.count %>)</small> </a>
+    <a href="#" class="tab-link is-active"><%= icon("envelope") %> Invites <small>(<%= @invitations.count %>)</small> </a>
     <div class="tab-content">
       <div class="invites">
 
@@ -11,10 +11,11 @@
           <ul>
           <% @invitations.each do |i| %> 
           <li class="vote-listing">
-              <% if i.vote.finished? %>
+              
+              <% if !voted?(i.vote.answers) %>
                 <div class="ribbon-wrapper">
                 <div class="ribbon">
-                  <%= link_to "Results!", vote_answers_path(i.vote) %>
+                  <%= link_to "Vote!", vote_path(i.vote) %>
                 </div>
                 </div>
               <% end %>
@@ -27,10 +28,7 @@
               </div>
             </div>
 
-            <% if voted?(i.vote.answers) %>
-              <% else %>
-              <%= link_to icon('check-square-o', 'vote!'), vote_path(i.vote), :class => "button" %>
-              <% end %>
+
 
              <div class="vote-footer">
               <%= link_to icon('eye', 'View'), vote_path(i.vote) %>
@@ -60,8 +58,8 @@
         
 
          
-         <% if v.finished? %>
-         <div class="ribbon-wrapper"><div class="ribbon"><%= link_to "Results!", vote_answers_path(v) %></div></div>
+         <% if !voted?(v.answers) %>
+         <div class="ribbon-wrapper"><div class="ribbon"><%= link_to "Vote!", vote_path(v) %></div></div>
          <% end %>
          <div class="question">
          <%= link_to v.question, vote_path(v) %>
@@ -74,13 +72,8 @@
          </div>
          
 
-         <% if v.answers.find_by(user: current_user) %> 
-          <% else %>
-          <div> 
 
-            <%= link_to icon('check-square-o', 'vote!'), vote_path(v), :class => "button" %>
-            </div>
-          <% end %>
+
 
           <div class="vote-footer">
           <%= link_to icon('eye', 'View'), vote_path(v) %>
