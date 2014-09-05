@@ -49,6 +49,18 @@ $(document).ready(function() {
     }
   });
 
+  //counts for unanswered votes
+  var invite_votes = $(".invites .ribbon").length;
+  var my_votes     = $(".questions .ribbon").length;
+
+  if (invite_votes > 0) {
+    $(".invite-link").append(" <small>(" + invite_votes + ")</small");
+  }
+  if (my_votes > 0) {
+    $(".my-link").append(" <small>(" + my_votes + ")</small>");
+  }
+
+
   icheck();
 });
 

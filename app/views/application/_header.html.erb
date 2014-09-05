@@ -5,13 +5,13 @@
 
     <a href="" class="centered-navigation-menu-button">MENU</a>
     <ul class="centered-navigation-menu">
-  
+     <!--  <li class="nav-link"><%= link_to "Home", root_path %></li>  -->
       <li class="nav-link"><%= link_to "New Vote", new_vote_path %></li> 
       <li class="nav-link"><%= link_to "All Votes", votes_path %></li>
       <li class="nav-link logo">
         <%= link_to(image_tag("logo.png"), root_path, class: "logo") %>
       </li>
-   
+      <!-- <li class="nav-link"><%= link_to "Account", "#" %></li> -->
       <li class="nav-link"><%= link_to "About", about_path %></li>
       <li class="nav-link"><%= link_to "Contact", contact_path %></li>
     </ul>
