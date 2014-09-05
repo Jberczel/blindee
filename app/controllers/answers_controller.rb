@@ -36,7 +36,7 @@ class AnswersController < ApplicationController
     end
 
     def check_particpation
-      unless @vote.get_participation_rate > 0.75
+      unless @vote.get_participation_rate >= 0.75
         flash[:notice] = "Not enough votes to show results."
         redirect_to root_path
       end
