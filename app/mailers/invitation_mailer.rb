@@ -11,7 +11,7 @@ class InvitationMailer < MandrillMailer::TemplateMailer
       subject: "You're invited to a Blindee Vote",
       to: invite.email,
       vars: {
-        'USER' => invite.email,
+        'USER' => invite.sender.email,
         'QUESTION' => invite.vote.question,
         'LINK' => url,
         'LIST_COMPANY' => 'Blindee'
@@ -31,7 +31,7 @@ class InvitationMailer < MandrillMailer::TemplateMailer
       subject: "You're invited to a Blindee Vote",
       to: invite.email,
       vars: {
-        'USER' => invite.email,
+        'USER' => invite.sender.email,
         'QUESTION' => invite.vote.question,
         'LINK' => url,
         'LIST_COMPANY' => 'Blindee'
