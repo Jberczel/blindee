@@ -1,4 +1,5 @@
 class Vote < ActiveRecord::Base
+  default_scope -> { order('created_at DESC') }
   belongs_to :creator, :class_name => "User"
 
   has_many :invites, :dependent => :destroy
