@@ -19,6 +19,9 @@ class AnswersController < ApplicationController
     if @answer.save
       flash[:success] = 'Thanks, your vote was cast.'
       redirect_to root_path
+    else
+      flash[:notice] = "Please select an answer."
+      redirect_to @vote
     end
   end
 
