@@ -41,8 +41,8 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = SMTP_SETTINGS
-  config.action_mailer.default_url_options = { host: 'blindy.local' }  # required for devise
-  config.mandrill_mailer.default_url_options = { :host => 'blindy.local' }
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }  # required for devise
+  config.mandrill_mailer.default_url_options = { :host => 'localhost:3000' }
 
   config.action_mailer.delivery_method = :letter_opener
 

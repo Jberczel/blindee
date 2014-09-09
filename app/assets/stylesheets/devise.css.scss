@@ -1,6 +1,7 @@
 .devise-sessions,
 .registrations,
-.devise-passwords {
+.devise-passwords,
+.devise-confirmations {
   @include outer-container;
   //not sure what this was here for
   //border: 1px solid $base-border-color;
@@ -82,12 +83,13 @@
   }
 }
 
-.signup-form, .pword-form {
+.signup-form, .pword-form, .confirmation-form {
   @extend .signin-form;
   .button {
     @include span-columns(4 of 4);
   }
 }
+
 
 
 

@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_vote, only: [:index, :create]
   before_action :check_vote, only: :create
 

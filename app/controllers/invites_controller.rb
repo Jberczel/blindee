@@ -1,5 +1,6 @@
 class InvitesController < ApplicationController
   include InvitesHelper
+  before_action :authenticate_user!
   before_action :set_vote
   before_action :check_creator
 
