@@ -19,7 +19,7 @@ $device-screen-image: '/assets/device.png';
   width: 100%;
   height: 20em;
   @include span-columns(12);
-  margin-top: 60px;
+  margin-top: 30px;
   //@include media($large-screen) {
   //  margin-top: 20px;
   //}
