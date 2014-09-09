@@ -23,6 +23,10 @@ $device-screen-image: '/assets/device.png';
   //@include media($large-screen) {
   //  margin-top: 20px;
   //}
+    @include border-top-radius(15px);
+    @include border-bottom-radius(15px);
+    @include border-left-radius(15px);
+    @include border-right-radius(15px);
 
   button {
     @include button(simple, $base-background-color);
@@ -31,7 +35,8 @@ $device-screen-image: '/assets/device.png';
   }
 
   .button {
-    background: $dark-blonde;
+    background: $dark-blue;
+    opacity: 0.8;
   }
 }
 
