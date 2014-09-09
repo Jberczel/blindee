@@ -8,10 +8,10 @@ class InvitesController < ApplicationController
 
   def create_many
 
-    emails = params[:invite_emails].split(/,|\r\n|\n/)[0..30] # only 30 invites
+    emails = params[:invite_emails].scan(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i)
+    emails = emails[0..30]
 
     emails.each do |email|
-      email = email.strip
 
       unless invited?(email) 
         @invite = Invite.new(:sender_id => current_user.id, :email => email, :vote => @vote)
