@@ -20,7 +20,7 @@ class Vote < ActiveRecord::Base
   end
 
   def finished?
-    get_participation_rate >= 0.75
+    get_participation_rate >= 0.75 || created_at <= 2.days.ago
   end
 
   private

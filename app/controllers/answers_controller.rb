@@ -40,18 +40,10 @@ class AnswersController < ApplicationController
 
     def check_requirements
       # cannot view results unless user voted
-      unless voted?(@vote.answers)
-        # cannot view results unless enough votes or past deadline 
-        unless @vote.finished? || check_deadline
-          flash[:notice] = "Not enough votes to show results."
-          redirect_to root_path
-        end
+      unless voted?(@vote.answers) && @vote.finished?
+        flash[:notice] = "Not enough votes to show results."
+        redirect_to root_path
       end
-    end
-
-    def check_deadline
-      # voters can view results after 2 days
-      @vote.created_at > 2.days.ago
     end
 
      # current user already answer?
