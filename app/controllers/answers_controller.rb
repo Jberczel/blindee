@@ -2,8 +2,8 @@ class AnswersController < ApplicationController
   before_action :set_vote, only: [:index, :create]
   before_action :check_vote, only: :create
 
-  # check if answered as well
-  before_action :check_particpation, only: :index
+  # check if users answered, if enough votes, and whether deadline passed already
+  before_action :check_requirements, only: :index
 
   def index
     @answers = @vote.answers
@@ -37,11 +37,20 @@ class AnswersController < ApplicationController
       params.require(:answer).permit(:answer, :comment)
     end
 
-    def check_particpation
-      unless @vote.finished? && voted?(@vote.answers) # user has to vote to see results.
-        flash[:notice] = "Not enough votes to show results."
-        redirect_to root_path
+    def check_requirements
+      # cannot view results unless user voted
+      unless voted?(@vote.answers)
+        # cannot view results unless enough votes or past deadline 
+        unless @vote.finished? || check_deadline
+          flash[:notice] = "Not enough votes to show results."
+          redirect_to root_path
+        end
       end
+    end
+
+    def check_deadline
+      # voters can view results after 2 days
+      @vote.created_at > 2.days.ago
     end
 
      # current user already answer?
