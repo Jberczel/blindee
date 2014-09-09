@@ -12,7 +12,7 @@ class Vote < ActiveRecord::Base
   before_save :add_quote
 
   def get_choices
-    choices.split(/\r?\n/).select { |c| c =~ /\S+/ }
+    choices.split(/\r?\n/).select { |c| c =~ /\S+/ }[0..4]
   end
 
   def get_participation_rate
