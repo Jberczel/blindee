@@ -2,6 +2,31 @@
   @include outer-container;
   @include media($mobile) { padding: 0.5em; }
 
+  .header {
+    @include span-columns(4);
+    @include shift(4);
+    @include media($tablet) {
+    @include span-columns(4);
+    @include shift(2);
+    }
+
+    @include media($mobile) {
+    @include span-columns(4);
+    @include shift(0);
+    padding: 0 1em;
+    } 
+    
+    opacity: .7;
+    margin-top: 60px;
+  }
+
+  .title {
+    @include span-columns(4);
+    @include shift(4);
+    text-align: center;
+    font-weight: 300;
+  }
+
   h3 {
     font-weight: 300;
     color: $base-font-color;
@@ -55,6 +80,8 @@
   }
 
   .about {
+
+    h2 { font-weight: 300; }
     .sample-qs {
       color: $dark-purple;
       font-style: italic;
@@ -188,6 +215,8 @@
     font-size: 0.8em;
     font-weight: bold;
   }
+
+
 
 }
 

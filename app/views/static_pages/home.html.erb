@@ -1,5 +1,5 @@
 
-
+<% if user_signed_in? %>
 
 <ul class="accordion-tabs-minimal">
   <li class="tab-header-and-content">
@@ -97,5 +97,19 @@
  
 </ul>
 
+<% else %>
+  
+<div class="device-background">
+  <div class="device-text">
+    <h4>Blindee brings anonymous voting to your e-mail chains</h4>
+    <p>If voting for leaders sounds like a good idea, why not vote on the simpler things in life, especially when you really want to say no, but feel pressure to yes, and vice versa</p>
+    <%= link_to "Learn More", about_path, class: "button" %>
+  </div>
+  <div class="device">
+    <div class="screen"></div>
+  </div>
+</div>
+
+<% end %>
 
 

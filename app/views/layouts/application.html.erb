@@ -10,7 +10,14 @@
 </head>
 <body class="<%= body_class %>">
   <%= render "sign_in" %>
-  <%= render "header" %>
+
+  <% if user_signed_in? %>
+    <%= render "header" %> 
+  <% else %>
+    <%= link_to(image_tag('logo.png'), root_path, class: "header") %>
+    <h1 class="title">Blindee</h1>
+  <% end %>
+
   
 
   <%= render "flashes" -%>
