@@ -1,5 +1,5 @@
 class InvitationMailer < MandrillMailer::TemplateMailer
-  default from: "no-reply@blindee.com"
+  default from: "no-reply@blindee.com", from_name: "Blindee"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

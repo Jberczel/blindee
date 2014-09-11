@@ -19,6 +19,7 @@ class RegistrationsController < Devise::RegistrationsController
       @invite = Invite.find_by_token(@token)
       @invite.update_attributes(:recipient => resource) if @invite
     end
+    Mailer.new_user(resource).deliver
  end
 
 end 
