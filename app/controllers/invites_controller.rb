@@ -13,20 +13,22 @@ class InvitesController < ApplicationController
     emails = emails[0..30]
 
     emails.each do |email|
-
-      unless invited?(email) 
+      # for each e-mail, send invite unless already invited or current user's email
+      unless invited?(email) || creator?(email)
         @invite = Invite.new(:sender_id => current_user.id, :email => email, :vote => @vote)
-        if @invite.save && @invite.recipient 
-          link = vote_url(@vote)
-          InvitationMailer.vote_invitation(@invite, link).deliver
-        elsif @invite.save
-          link = new_user_registration_url(:invite_token => @invite.token)
-          InvitationMailer.new_invitation(@invite, link).deliver
+        if @invite.save
+          if @invite.recipient 
+            link = vote_url(@vote)
+            InvitationMailer.vote_invitation(@invite, link).deliver
+          else
+            link = new_user_registration_url(:invite_token => @invite.token)
+            InvitationMailer.new_invitation(@invite, link).deliver
+          end
         end
       end
     end
 
-    flash[:success] = 'Emails sent!'
+    flash[:notice] = 'Emails sent!'
     redirect_to vote_path(@vote)
   end
 
@@ -37,6 +39,11 @@ class InvitesController < ApplicationController
 
     def set_vote
       @vote = Vote.find(params[:id])
+    end
+
+    # helper method for checking 
+    def creator?(email)
+      current_user.email == email
     end
 
 end
