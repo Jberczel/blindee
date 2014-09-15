@@ -22,12 +22,16 @@
              
             <div class="question">
               <%= link_to i.vote.question, vote_path(i.vote) %>
-              <% unless i.vote.public? %>
-              <div class="vote-count"> 
-                <%= i.vote.answers.count %> of <%= i.vote.invites.count + 1 %> votes
+                 <div class="vote-count"> 
+              <% if i.vote.public? %>
+                <%= pluralize( i.vote.count, "vote") %> so far
+              <% else %>
+           
+                <%= i.vote.answers.count %> of <%= pluralize(i.vote.invites.count + 1, "vote") %>
                 (required: <%=((i.vote.invites.count + 1) * 0.75).ceil %>)
-              </div>
+          
               <% end %>
+                  </div>
             </div>
 
 
@@ -65,12 +69,16 @@
          <% end %>
          <div class="question">
          <%= link_to v.question, vote_path(v) %>
-         <% unless v.public? %>
-         <div class="vote-count"> 
-         <%= v.answers.count %> of <%= v.invites.count + 1 %> votes
+         <div class = "vote-count">
+         <% if v.public? %>
+            <%= pluralize(v.answers.count, "vote") %> so far
+         <% else %>
+ 
+         <%= v.answers.count %> of <%= pluralize(v.invites.count + 1, "vote") %>
          (required: <%=((v.invites.count + 1) * 0.75).ceil %>)
-         </div>
+         
          <% end %>
+         </div>
         
          </div>
          
