@@ -2,23 +2,27 @@
 <div class="vote-list">
 <h2>Public votes</h2>
 <hr>
-<p>All Blindee voters can vote.</p>
+<p>Not very scientific, but any Blindee user can vote here.</p>
 
 <ul>
     <% @votes.each do |vote| %>
         <li class="vote-listing">
         <div class="question">
           <%= link_to vote.question, vote %>
+
+               <div class="vote-count">
+            <%= pluralize(vote.answers.count, "vote") %> so far
+          </div>
       </div>
+
+          
+         
+   
+     
 
           <div class="vote-footer">
             <%= link_to icon('eye', 'View'), vote_path(vote) %>
             <%= link_to icon('bar-chart', 'Results'), vote_answers_path(vote) %>
-          </div>
-         
-   
-          <div class="vote-count">
-            <!-- <%= vote.answers.count %> of <%= vote.invites.count + 1 %> -->
           </div>
     
         </li>
