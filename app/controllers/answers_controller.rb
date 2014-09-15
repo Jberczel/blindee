@@ -41,7 +41,7 @@ class AnswersController < ApplicationController
     def check_requirements
       # cannot view results unless user voted
       unless voted?(@vote.answers) && @vote.finished?
-        flash[:notice] = "Not enough votes to show results."
+        flash[:notice] = "Sorry, you cannot see results yet."
         redirect_to root_path
       end
     end

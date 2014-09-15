@@ -1,18 +1,26 @@
 
 <div class="vote-list">
-<h2>Listing votes</h2>
+<h2>Public votes</h2>
 <hr>
-<h4>This section will eventually be for public votes, where all blindee users can vote.</h4>
+<p>All Blindee voters can vote.</p>
 
 <ul>
     <% @votes.each do |vote| %>
         <li class="vote-listing">
         <div class="question">
           <%= link_to vote.question, vote %>
-          <div class="vote-count">
-            <%= vote.answers.count %> of <%= vote.invites.count + 1 %>
+      </div>
+
+          <div class="vote-footer">
+            <%= link_to icon('eye', 'View'), vote_path(vote) %>
+            <%= link_to icon('bar-chart', 'Results'), vote_answers_path(vote) %>
           </div>
-        </div>
+         
+   
+          <div class="vote-count">
+            <!-- <%= vote.answers.count %> of <%= vote.invites.count + 1 %> -->
+          </div>
+    
         </li>
         <span class="post-time"><%= time_ago_in_words(vote.created_at) %> ago by <%= vote.creator.email %></span>
     <% end %>

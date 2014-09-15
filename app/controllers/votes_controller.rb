@@ -2,13 +2,13 @@ class VotesController < ApplicationController
   include VotesHelper
   before_action :authenticate_user!
   before_action :set_vote, only: [ :show, :edit, :update, :destroy ]
-  before_action :check_invited, only: :show
+  before_action :check_invited, only: :show, unless: :public_vote?
   before_action :check_creator, only: [ :edit, :update, :destroy ]
 
 
   # GET /votes
   def index
-    @votes = Vote.all
+    @votes = Vote.where(public_vote: true)
   end
 
   # GET /votes/1
@@ -66,6 +66,10 @@ class VotesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def vote_params
-      params.require(:vote).permit(:question, :choices, :details)
+      params.require(:vote).permit(:question, :choices, :details, :public_vote)
+    end
+
+    def public_vote?
+      @vote.public?
     end
 end

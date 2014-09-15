@@ -22,10 +22,12 @@
              
             <div class="question">
               <%= link_to i.vote.question, vote_path(i.vote) %>
+              <% unless i.vote.public? %>
               <div class="vote-count"> 
                 <%= i.vote.answers.count %> of <%= i.vote.invites.count + 1 %> votes
                 (required: <%=((i.vote.invites.count + 1) * 0.75).ceil %>)
               </div>
+              <% end %>
             </div>
 
 
@@ -63,11 +65,12 @@
          <% end %>
          <div class="question">
          <%= link_to v.question, vote_path(v) %>
+         <% unless v.public? %>
          <div class="vote-count"> 
          <%= v.answers.count %> of <%= v.invites.count + 1 %> votes
          (required: <%=((v.invites.count + 1) * 0.75).ceil %>)
-
          </div>
+         <% end %>
         
          </div>
          

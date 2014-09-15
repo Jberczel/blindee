@@ -42,8 +42,9 @@
     }
 
     textarea {
+      background-color: $base-background-color;
       &:focus {
-        border-color: $dark-purple;
+        border-color: $dark-purple; 
         box-shadow: $dark-purple;
       }
 
@@ -60,6 +61,7 @@
     .question-details {
       margin-top: 0.5em;
       border: 1px solid $light-gray;
+      background-color: $base-background-color;
       @include border-top-radius(10px);
       @include border-bottom-radius(10px);
       @include border-left-radius(10px);
@@ -70,7 +72,7 @@
     .choices-header { padding-left: 8px; }
 
     .radios { 
-      background: white;
+      background: $base-background-color;
       padding: 0.5em;
       @include border-top-radius(3px);
       @include border-bottom-radius(3px);
@@ -137,6 +139,17 @@
     h1 {
       margin-bottom: 0.5rem;
     }
+
+    label {
+      display: inline;
+      font-weight: 500;
+      color: $base-font-color;
+    }
+
+
+    .button, .vote_public {
+      @include span-columns(2 of 4);  
+    }
   }
 
   .invite-form {
@@ -193,6 +206,9 @@
     }
 
     .status { text-align: center; }
+  
+    
+
   }
 
   small {
@@ -230,6 +246,25 @@
       float: left;
     }
 
+  .vote-footer {
+    clear: both;
+    font-size: 0.8em;
+
+    &:hover { 
+      a { color: $dark-blue; }
+    }
+
+    a { 
+      color: $light-blue;
+      font-weight: 500;
+      padding-right: 0.5em;
+
+      &:hover {
+        text-decoration: underline;
+
+      }
+    }
+  }
 
   }
 
@@ -238,6 +273,9 @@
     font-size: 0.8em;
 
   }
+
+  
+
 
 }
 

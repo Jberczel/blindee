@@ -3,8 +3,10 @@
     <%= f.input :question %>
     <%= f.text_area :details, rows: 3, placeholder: "Add question details (optional)" %>
     <%= f.text_area :choices, rows: 5, placeholder: "Enter answers on each line..." %>
-    <button type="submit" classs="button">
+    <button type="submit" class="button">
       <%= icon('check', 'Create Vote') %>
     </button>
+    <%= f.input :public_vote, label: "Public Vote?" %>
+    
 
 <% end %>
