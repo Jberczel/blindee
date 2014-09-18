@@ -3,12 +3,6 @@
 .devise-passwords,
 .devise-confirmations {
   @include outer-container;
-  //not sure what this was here for
-  //border: 1px solid $base-border-color;
-  //@include border-top-radius(5px);
-  //@include border-bottom-radius(5px);
-  //@include border-left-radius(5px);
-  //@include border-right-radius(5px);
 
   .responsive {
     @include media($tablet) {
@@ -47,14 +41,11 @@
   @include shift(4);
   @extend .responsive;
 
-
-
   h1, h2 {
     margin-bottom: 12px;
     font-weight: 300;
     text-align: center;
     color: $base-font-color;
-
   }
 
   label {
@@ -67,8 +58,6 @@
     margin-top: 1em;
     margin-bottom: 0;
   }
-
-
 
   .button, .user_remember_me {
     @include span-columns(2 of 4);

@@ -2,8 +2,8 @@ class VotesController < ApplicationController
   include VotesHelper
   before_action :authenticate_user!
   before_action :set_vote, only: [ :show, :edit, :update, :destroy ]
-  before_action :check_invited, only: :show, unless: :public_vote?
   before_action :check_creator, only: [ :edit, :update, :destroy ]
+  before_action :check_invited, only: :show, unless: :public_vote?
 
 
   # GET /votes
@@ -24,7 +24,6 @@ class VotesController < ApplicationController
 
   # GET /votes/1/edit
   def edit
-
   end
 
   # POST /votes
@@ -32,11 +31,16 @@ class VotesController < ApplicationController
     @vote = current_user.created_votes.build(vote_params)
    
     if @vote.save
-      # flash doesn't appear if I use short-hand style
-      flash[:success] = 'Vote was successfully created. Now invite some voters!'
-      redirect_to invite_vote_path(@vote)
+      if public_vote?
+        # flash doesn't appear if I use short-hand style
+        flash[:success] = 'Your public vote was successfully created.'
+        redirect_to @vote
+      else
+        flash[:success] = 'Vote was successfully created. Now invite some voters!'
+        redirect_to invite_vote_path(@vote) 
+      end
     else
-      flash[:error] = "Uh oh."
+      flash[:error] = "Uh oh, something went wrong."
       render :new
     end
   end
@@ -67,9 +71,5 @@ class VotesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def vote_params
       params.require(:vote).permit(:question, :choices, :details, :public_vote)
-    end
-
-    def public_vote?
-      @vote.public?
     end
 end

@@ -8,14 +8,12 @@ Rails.application.routes.draw do
     resources :answers 
   end
 
-
  devise_for :users, :controllers => { :registrations => "registrations" }, :skip => [:sessions]
   as :user do
     get 'login' => 'devise/sessions#new', :as => :new_user_session
     post 'login' => 'devise/sessions#create', :as => :user_session
     delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end
-
 
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'

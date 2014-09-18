@@ -1,4 +1,4 @@
-# app/controllers/registrations_controller.rb
+# override Devise Registration to include invite tokens
 class RegistrationsController < Devise::RegistrationsController
 
   def new  

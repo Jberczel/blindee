@@ -1,0 +1,14 @@
+<div class="questions">
+<% if @created_votes %>
+<ul>
+  <% @created_votes.each do |v| %>
+    <li class="vote-listing">
+      <%= render "vote_ribbon", object: v %>
+      <%= render "vote_question", object: v %>
+      <%= render "vote_footer", object: v %>
+    </li>
+    <span class="post-time">Posted <%= time_ago_in_words(v.created_at) %> ago</span>
+  <% end %>
+</ul>
+<% end %>
+</div>

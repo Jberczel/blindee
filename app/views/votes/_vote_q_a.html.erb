@@ -1,0 +1,21 @@
+
+<h3><%= @vote.question %></h3>
+
+<% if details?(@vote) %>
+  <div class="question-details">
+    <%= markdown(@vote.details) %>
+  </div>
+<% end %>
+
+<h4 class="choices-header"><%= icon('check-circle-o', 'choices') %></h4>
+<hr>
+
+<% if voted?(@vote.answers) %>
+  <%= render 'answer_choices' %>
+<% else %>
+  <%= render 'answer_form' %>
+<% end %>
+
+<% if @vote.finished? && voted?(@vote.answers) %>
+  <%= link_to icon("bar-chart", "View Results"), vote_answers_path(@vote), class: "button" %>
+<% end %>

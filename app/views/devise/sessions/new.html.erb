@@ -1,14 +1,12 @@
 <div class="signin-form">
-<h1>Blindee</h1>
-<%= render "flashes" %>
-<%= minimal_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <%= f.input :email, required: false, autofocus: true %>
-  <%= f.input :password, required: false %>
-  
-  <%= f.button :submit, "Sign in" %>
-  <%= f.input :remember_me, label: "Stay logged in", as: :boolean if devise_mapping.rememberable? %>
+  <h1>Blindee</h1>
+  <%= render "flashes" %>
+  <%= minimal_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= f.input :email, required: false, autofocus: true %>
+    <%= f.input :password, required: false %>
+    <%= f.button :submit, "Sign in" %>
+    <%= f.input :remember_me, label: "Stay logged in", as: :boolean if devise_mapping.rememberable? %>
+  <% end %>
 
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
 </div>

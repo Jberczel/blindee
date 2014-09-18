@@ -1,3 +1,5 @@
+//refills template
+
 $device-padding-vertical: 5em;
 $device-padding-horizontal: .4em;
 $device-screen-width: 14em;
@@ -20,13 +22,10 @@ $device-screen-image: '/assets/device.png';
   height: 20em;
   @include span-columns(12);
   margin-top: 30px;
-  //@include media($large-screen) {
-  //  margin-top: 20px;
-  //}
-    @include border-top-radius(15px);
-    @include border-bottom-radius(15px);
-    @include border-left-radius(15px);
-    @include border-right-radius(15px);
+  @include border-top-radius(15px);
+  @include border-bottom-radius(15px);
+  @include border-left-radius(15px);
+  @include border-right-radius(15px);
 
   button {
     @include button(simple, $base-background-color);
@@ -58,7 +57,6 @@ $device-screen-image: '/assets/device.png';
   }
 
   p {
-
     margin-bottom: 1.5em;
   }
 }

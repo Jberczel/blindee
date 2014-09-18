@@ -1,70 +1,9 @@
-
-<div class="survey">
-
-    <h3><%= @vote.question %></h3>
-    
-    <% if details?(@vote) %>
-      <div class="question-details">
-        <%= markdown(@vote.details) %>
-      </div>
-    <% end %>
-
-  <h4 class="choices-header"><%= icon('check-circle-o', 'choices') %></h4>
-  <hr>
-    <% if user_answered? %>
-      <%= render 'answer_choices' %>
-    <% else %>
-      <%= render 'answer_form' %>
-    <% end %>
-
-  <% if @vote.finished? && voted?(@vote.answers) %>
-    <%= link_to icon("bar-chart", "View Results"), vote_answers_path(@vote), class: "button" %>
-  <% end %>
+<div class="q-and-a">
+  <%= render "vote_q_a" %>
 </div>
-
-
-  
 
 <div class="detail">
-
-<% unless @vote.public? %>
-<div class="status">
-  <h4><%= icon('circle-o-notch', 'status') %></h4>
-  <hr>
-<p><%= @vote.answers.count %> of <%= @invites.count + 1 %> votes</p>
-</div>
-<% end %>
-
-<div class="creator">
-  <h4><%= icon('user','created by') %></h4>
-  <hr>
-  <p><%= @vote.creator.email %></p>
-</div>
-
-<div class="vote-type">
-  <% if @vote.public? %>
-    <h4><%= icon('unlock-alt','vote type') %></h4>
-    <hr>
-    <p>Public</p>
-  <% else %>
-    <h4><%= icon('lock','vote type') %></h4>
-    <hr>
-    <p>Private</p>
-  <% end %>
-</div>
-
-<% unless @vote.public? %>
-<div class="invites">
-<h4><%= icon('users') %> invites (<%= @invites.count %>)</h4>
-  <hr>
-  <p><%= @invites.map{ |i| i.email }.join(", ") %></p>
-
-  <% if current_user?(@vote.creator) && !@vote.finished? %>
-    <%= link_to icon('plus', 'Add Invites'), invite_vote_path, :class => "button" %>
-  <% end %>
-</div>
-<% end %>
-
+  <%= render "vote_detail" %>
 </div>
 
 

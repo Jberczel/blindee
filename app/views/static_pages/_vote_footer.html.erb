@@ -1,0 +1,6 @@
+<div class="vote-footer">
+  <%= link_to icon('eye', 'View'), vote_path(object) %>
+  <% if object.finished? %>
+    <%= link_to icon('bar-chart','Results'), vote_answers_path(object) %>
+  <% end %>
+</div>

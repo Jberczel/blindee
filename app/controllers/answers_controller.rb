@@ -1,10 +1,8 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_vote, only: [:index, :create]
-  before_action :check_vote, only: :create
-
-  # check if users answered, if enough votes, and whether deadline passed already
-  before_action :check_requirements, only: :index
+  before_action :check_user_vote, only: :create     # prevent multiple votes
+  before_action :check_requirements, only: :index   # to view results
 
   def index
     @answers = @vote.answers
@@ -29,7 +27,7 @@ class AnswersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_vote
       @vote = Vote.find(params[:vote_id])
     end
@@ -38,26 +36,22 @@ class AnswersController < ApplicationController
       params.require(:answer).permit(:answer, :comment)
     end
 
+    def check_user_vote
+      if voted?(@vote.answers)
+        flash[:notice] = "Sorry, you've already voted."
+        redirect_to root_path
+      end
+    end
+
+    def voted?(answers)
+      answers.find_by(user: current_user)
+    end
+
     def check_requirements
-      # cannot view results unless user voted
       unless voted?(@vote.answers) && @vote.finished?
         flash[:notice] = "Sorry, you cannot see results yet."
         redirect_to root_path
       end
     end
-
-     # current user already answer?
-    def voted?(answers)
-      answers.find_by(user: current_user)
-    end
-
-    def check_vote
-      if voted?(@vote.answers)
-        flash[:notice] = "Sorry, you've already voted."
-        redirect_to root_path
-    end
-
-   
-
-    end
+ 
 end

@@ -1,7 +1,7 @@
 <section class="results">
   <h1>The results are in.</h1>
   <% if @vote.public? %>
-    <h3>(<%= pluralize(@answers.count,"vote")%> so far) </h3>
+    <h3>(<%= pluralize(@answers.count,"vote")%> so far)</h3>
   <% else %>
     <h3>(<%= participation_rate %> participation rate)</h3>
   <% end %>
@@ -12,11 +12,8 @@
 
   <canvas class="myChart"></canvas>
 
-  <!-- <p>count = <%= @results.class %></p> -->
-
   <h4><%= icon('comment', 'Comments') %></h4>
   <% @answers.each do |a| %>
     <blockquote><%= a.comment %></blockquote>
   <% end %>
-
 </section>

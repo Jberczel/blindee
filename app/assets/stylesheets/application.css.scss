@@ -20,20 +20,9 @@
 @import 'votes';
 @import 'answers';
 
-
-
-
 #sign_in {
   float: right;
   font-size: 0.8em;
-
-}
-
-#flash {
-  //clear: right;
-  //margin-bottom: 0;
-  //@include span-columns(4);
-  //@include shift(4);
 }
 
 .error {

@@ -1,0 +1,14 @@
+<div class="invites">
+  <% if @invitations %>
+    <ul>
+    <% @invitations.each do |i| %> 
+      <li class="vote-listing">
+        <%= render "vote_ribbon", object: i.vote %>
+        <%= render "vote_question", object: i.vote %>
+        <%= render "vote_footer", object: i.vote %>
+      </li>
+    <span class="post-time">Invited <%= time_ago_in_words(i.created_at) %> ago by <%= i.sender.email %></span>
+    <% end %>
+    </ul>
+  <% end %>
+</div>

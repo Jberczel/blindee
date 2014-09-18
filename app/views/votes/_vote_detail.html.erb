@@ -1,0 +1,25 @@
+<% unless @vote.public? %>
+  <%= render "vote_status" %>
+<% end %>
+
+<div class="creator">
+  <h4><%= icon('user','created by') %></h4>
+  <hr>
+  <p><%= @vote.creator.email %></p>
+</div>
+
+<div class="vote-type">
+  <% if @vote.public? %>
+    <h4><%= icon('unlock-alt','vote type') %></h4>
+    <hr>
+    <p>Public</p>
+  <% else %>
+    <h4><%= icon('lock','vote type') %></h4>
+    <hr>
+    <p>Private</p>
+  <% end %>
+</div>
+
+<% unless @vote.public? %>
+  <%= render "vote_invites" %>
+<% end %>

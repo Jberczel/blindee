@@ -2,16 +2,11 @@
   @include outer-container;
   @include media($mobile) { padding: 0.5em; }
 
+  hr { @include margin(0em null 0.5em null); }
 
-  hr {
-    @include margin(0em null 0.5em null);
-  }
+  ul { margin-bottom: .75em; }
 
-  ul {
-    margin-bottom: .75em;
-  }
-
-  .survey {
+  .q-and-a {
     @include span-columns(4);
     @include shift(4);
 
@@ -37,9 +32,7 @@
     box-shadow: 0 0 3px 3px $light-purple;
     padding: 1em;
 
-    label {
-      font-weight: normal;
-    }
+    label { font-weight: normal; }
 
     textarea {
       background-color: $base-background-color;
@@ -47,16 +40,11 @@
         border-color: $dark-purple; 
         box-shadow: $dark-purple;
       }
-
     }
 
-    .button {
-      background-color: $dark-purple;
-    }
+    .button { background-color: $dark-purple; }
 
-    h4 {
-      margin-top: 0.5em;
-    }
+    h4 { margin-top: 0.5em; }
 
     .question-details {
       margin-top: 0.5em;
@@ -80,6 +68,7 @@
       @include border-right-radius(3px);
        }
   }
+
   
   .detail {
     @include span-columns(3);
@@ -94,10 +83,11 @@
       @include shift(0);
       padding: 2em 1em;
     }
-     background: $light-blonde;
+    
+    background: $light-blonde;
     box-shadow: 0 0 3px 3px $light-blonde;
     color: $base-font-color;
-        @include border-top-radius(10px);
+    @include border-top-radius(10px);
     @include border-bottom-radius(10px);
     @include border-left-radius(10px);
     @include border-right-radius(10px);
@@ -109,18 +99,11 @@
   }
 
 
-  .nav-links {
-    @extend .question;
-    text-align: center;
-    margin-top: 1em;
-  }
-  
   // what is this for again?
   .vote-form {
     @include span-columns(4);
     @include shift(4);
-    
-    
+      
     .button, input[type="submit"] {
       @include span-columns(4 of 4);
     }
@@ -145,7 +128,6 @@
       font-weight: 500;
       color: $base-font-color;
     }
-
 
     .button, .vote_public {
       @include span-columns(2 of 4);  
@@ -172,6 +154,13 @@
 
     .button {
       @include span-columns(4 of 4);
+    }
+
+    .button-detail {
+      @extend .button;
+      text-align: center;
+      margin-top: 0.5em;
+
     }
   }
 
@@ -206,9 +195,6 @@
     }
 
     .status { text-align: center; }
-  
-    
-
   }
 
   small {
@@ -216,12 +202,7 @@
   }
 
   .vote-listing {
-
-
     padding: 10px;
-
-    //border-top: 1px solid #e8e8e8;
-    //border: 2px solid $dark-blue;
     position: relative;
     background: white;
     @include border-top-radius(15px);
@@ -230,10 +211,9 @@
     @include border-right-radius(15px);
     margin-top: 1em;
     @include clearfix;
-
     box-shadow: 0 0 3px 3px white;
 
-  .question {
+    .question {
       a {
         font-size: 1.5em;
         color: $base-font-color;
@@ -244,43 +224,31 @@
         }
       }
       float: left;
+      .vote-count { font-size: 0.8em; }
+    }
 
-      .vote-count {
-        font-size: 0.8em;
+    .vote-footer {
+      clear: both;
+      font-size: 0.8em;
+
+      &:hover { 
+        a { color: $dark-blue; }
+      }
+
+      a { 
+        color: $light-blue;
+        font-weight: 500;
+        padding-right: 0.5em;
+
+        &:hover { text-decoration: underline; }
       }
     }
-
-  .vote-footer {
-    clear: both;
-    font-size: 0.8em;
-
-    &:hover { 
-      a { color: $dark-blue; }
-    }
-
-    a { 
-      color: $light-blue;
-      font-weight: 500;
-      padding-right: 0.5em;
-
-      &:hover {
-        text-decoration: underline;
-
-      }
-    }
-  }
-
   }
 
   .post-time {
     padding: 0 10px;
     font-size: 0.8em;
-
   }
-
-  
-
-
 }
 
 

@@ -1,126 +1,21 @@
-
 <% if user_signed_in? %>
-
-<ul class="accordion-tabs-minimal">
-  <li class="tab-header-and-content">
-    <a href="#" class="tab-link invite-link is-active"> <%= icon("envelope")%> Invites </a>
-    <div class="tab-content">
-      <div class="invites">
-
-          <% if @invitations %>
-          <ul>
-          <% @invitations.each do |i| %> 
-          <li class="vote-listing">
-              
-              <% if !voted?(i.vote.answers) %>
-                <div class="ribbon-wrapper">
-                <div class="ribbon">
-                  <%= link_to "Vote!", vote_path(i.vote) %>
-                </div>
-                </div>
-              <% end %>
-             
-            <div class="question">
-              <%= link_to i.vote.question, vote_path(i.vote) %>
-                 <div class="vote-count"> 
-              <% if i.vote.public? %>
-                <%= pluralize( i.vote.count, "vote") %> so far
-              <% else %>
-           
-                <%= i.vote.answers.count %> of <%= pluralize(i.vote.invites.count + 1, "vote") %>
-                (required: <%=((i.vote.invites.count + 1) * 0.75).ceil %>)
-          
-              <% end %>
-                  </div>
-            </div>
-
-
-
-             <div class="vote-footer">
-              <%= link_to icon('eye', 'View'), vote_path(i.vote) %>
-              <% if i.vote.finished? %>
-                <%= link_to icon('bar-chart','Results'), vote_answers_path(i.vote) %>
-              <% end %>
-              </div>
-          </li>
-            <span class="post-time">Invited <%= time_ago_in_words(i.created_at) %> ago by <%= i.sender.email %></span>
-          <% end %>
-          <% end %>
-          <ul>
-          </div>
-    </div>
-  </li>
-
-
-  <li class="tab-header-and-content">
-    <a href="#" class="tab-link my-link"><%= icon("check-square") %> My Votes </a>
-    <div class="tab-content">
-          <div class="questions">
- 
-      <% if @created_votes %>
-      <ul>
-      <% @created_votes.each do |v| %>
-        <li class="vote-listing">
-        
-
-         
-         <% if !voted?(v.answers) %>
-         <div class="ribbon-wrapper"><div class="ribbon"><%= link_to "Vote!", vote_path(v) %></div></div>
-         <% end %>
-         <div class="question">
-         <%= link_to v.question, vote_path(v) %>
-         <div class = "vote-count">
-         <% if v.public? %>
-            <%= pluralize(v.answers.count, "vote") %> so far
-         <% else %>
- 
-         <%= v.answers.count %> of <%= pluralize(v.invites.count + 1, "vote") %>
-         (required: <%=((v.invites.count + 1) * 0.75).ceil %>)
-         
-         <% end %>
-         </div>
-        
-         </div>
-         
-
-
-
-
-          <div class="vote-footer">
-          <%= link_to icon('eye', 'View'), vote_path(v) %>
-            <%= link_to icon("envelope-o", "Invite"), invite_vote_path(v) %>
-           <%= link_to icon('trash-o', 'Delete'), v, method: :delete, data: { confirm: 'Are you sure?' } %> 
-           <% if v.finished? %>
-                <%= link_to icon('bar-chart', 'Results'), vote_answers_path(v) %>
-              <% end %>
-          </div>
-
-        </li>
-        <span class="post-time">Posted <%= time_ago_in_words(v.created_at) %> ago</span>
-      <% end %>
-      <% end %>
-       </ul>
+  <ul class="accordion-tabs-minimal">
+    <li class="tab-header-and-content">
+      <a href="#" class="tab-link invite-link is-active"> <%= icon("envelope")%> Invites </a>
+      <div class="tab-content">
+        <%= render "invites" %>
       </div>
+    </li>
 
-    
-    </div>
-  </li>
- 
-</ul>
-
+    <li class="tab-header-and-content">
+      <a href="#" class="tab-link my-link"><%= icon("check-square") %> My Votes </a>
+      <div class="tab-content">
+        <%= render "your_questions" %> 
+      </div>
+    </li>
+  </ul>
 <% else %>
-  
-<div class="device-background">
-  <div class="device-text">
-    <h4>Blindee brings anonymous voting to your e-mail chains</h4>
-    <p>If voting for leaders sounds like a good idea, why not vote on the simpler things in life, especially when you really want to say no, but feel pressure to yes, and vice versa</p>
-    <%= link_to "Learn More", about_path, class: "button" %>
-  </div>
-  <div class="device">
-    <div class="screen"></div>
-  </div>
-</div>
-
+  <%= render "hero_unit" %>
 <% end %>
 
 
