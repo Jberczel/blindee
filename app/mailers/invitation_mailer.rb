@@ -8,6 +8,7 @@ class InvitationMailer < MandrillMailer::TemplateMailer
   #
   def new_invitation(invite, url)
     mandrill_mail template: 'new_invitation',
+      :headers => { :"Reply-To" => invite.sender.email },
       subject: "You're invited to a Blindee Vote",
       to: invite.email,
 
@@ -24,6 +25,7 @@ class InvitationMailer < MandrillMailer::TemplateMailer
 
   def vote_invitation(invite, url)
     mandrill_mail template: 'vote_invitation',
+      :headers => { :"Reply-To" => invite.sender.email },
       subject: "You're invited to a Blindee Vote",
       to: invite.email,
    
