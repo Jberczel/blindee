@@ -3,7 +3,8 @@ $(document).ready( function() {
   var ctx = $(".myChart").get(0).getContext("2d");
 
   var data = {
-    labels: <%= raw @results.keys %>,
+    //TODO: other way to do this besides using 'raw'
+    labels: <%= raw truncate(@results.keys) %>,
     datasets: [
       {
         label: "My First dataset",
@@ -11,7 +12,7 @@ $(document).ready( function() {
         strokeColor: "rgba(220, 191, 219, 0.8)",
         highlightFill: "rgba(165, 67, 153, 0.75)",
         highlightStroke: "rgba(220, 191, 219, 1)",
-        data: <%= @results.values %>,
+        data: <%= @results.values %>
       },      
     ]
   };
@@ -21,6 +22,8 @@ $(document).ready( function() {
       scaleFontSize: 12,
       //maintainAspectRatio: false,
       //barShowStroke : false
+      tooltipFontSize: 12
+
   };
 
   var myBarChart = new Chart(ctx).Bar(data, overides);
