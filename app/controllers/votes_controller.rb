@@ -1,9 +1,10 @@
 class VotesController < ApplicationController
   include VotesHelper
   before_action :authenticate_user!
-  before_action :set_vote, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_vote, only: [ :show, :edit, :update, :destroy, :new_notification, :send_notification ]
   before_action :check_creator, only: [ :edit, :update, :destroy ]
   before_action :check_invited, only: :show, unless: :public_vote?
+  before_action :check_notified, only: [ :new_notification, :send_notification ]
 
 
   # GET /votes
@@ -62,6 +63,18 @@ class VotesController < ApplicationController
     redirect_to root_path, notice: 'Vote was successfully destroyed.'
   end
 
+
+  def new_notification
+  end
+
+  def send_notification
+    comment = params[:comment]
+    Mailer.send_notification(@vote, vote_url(@vote), comment).deliver
+    @vote.update_attributes(:notified => true)
+    flash[:notice] = "Notifications sent"
+    redirect_to vote_path(@vote)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_vote
@@ -71,5 +84,9 @@ class VotesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def vote_params
       params.require(:vote).permit(:question, :choices, :details, :public_vote)
+    end
+
+    def check_notified
+      redirect_to vote_path(@vote), notice: "Already notified." if @vote.notified?
     end
 end

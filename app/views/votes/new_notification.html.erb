@@ -1,0 +1,13 @@
+  <div class="invite-form">
+
+  <h2>Notify Invites</h2>
+  <!-- controller: 'votes', action: 'invite' -->
+  <%= form_tag notification_vote_path do %>
+    <%= text_area_tag :comment, nil, rows: 7, placeholder: "Send a reminder or notify your invites about the results." %>
+
+    <button type="submit" class="button">
+      <%= icon('mail-forward', 'Send Notification') %>
+    </button>
+  <% end %>
+  <%= link_to icon("eye","Vote details"), vote_path(@vote), class: "button-detail" %>
+</div>

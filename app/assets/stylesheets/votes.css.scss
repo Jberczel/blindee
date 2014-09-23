@@ -42,7 +42,10 @@
       }
     }
 
-    .button { background-color: $dark-purple; }
+    .button { 
+      background-color: $dark-purple;
+      @include span-columns(4 of 4);
+    }
 
     h4 { margin-top: 0.5em; }
 
@@ -93,7 +96,9 @@
     @include border-right-radius(10px);
     padding: 1em;
     .button {
+      @include span-columns(3 of 3);
       background-color: $dark-blonde;
+      margin-bottom: 0.5em;
     }
 
   }

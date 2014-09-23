@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     member do
       get  :invite, to: 'invites#new_many'
       post :invite, to: 'invites#create_many'
+
+      get  :notification, to: 'votes#new_notification'
+      post :notification, to: 'votes#send_notification'
     end
     resources :answers 
   end

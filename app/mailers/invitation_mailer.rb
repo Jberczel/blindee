@@ -10,6 +10,7 @@ class InvitationMailer < MandrillMailer::TemplateMailer
     mandrill_mail template: 'new_invitation',
       subject: "You're invited to a Blindee Vote",
       to: invite.email,
+
       vars: {
         'USER' => invite.sender.email,
         'QUESTION' => invite.vote.question,
@@ -25,6 +26,7 @@ class InvitationMailer < MandrillMailer::TemplateMailer
     mandrill_mail template: 'vote_invitation',
       subject: "You're invited to a Blindee Vote",
       to: invite.email,
+   
       vars: {
         'USER' => invite.sender.email,
         'QUESTION' => invite.vote.question,

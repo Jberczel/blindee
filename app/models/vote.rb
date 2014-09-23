@@ -28,6 +28,10 @@ class Vote < ActiveRecord::Base
     public_vote
   end
 
+  def notified?
+    notified
+  end
+
   private
     # add quesiton mark to question if user forgets
     def add_quote
