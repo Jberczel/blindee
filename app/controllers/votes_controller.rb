@@ -87,6 +87,7 @@ class VotesController < ApplicationController
     end
 
     def check_notified
-      redirect_to vote_path(@vote), notice: "Already notified." if @vote.notified?
+      # public votes do not get notifications as well
+      redirect_to vote_path(@vote), notice: "Already notified." if @vote.notified? || @vote.public?
     end
 end
