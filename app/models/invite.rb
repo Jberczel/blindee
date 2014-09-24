@@ -7,6 +7,7 @@ class Invite < ActiveRecord::Base
   before_create :generate_token
   # save takes care of updates and creates
   before_save :check_user_existence
+  before_save { self.email = email.downcase }
 
   # using suspenders email validation 
   validates :email, presence: true, :email => true
