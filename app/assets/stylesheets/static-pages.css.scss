@@ -1,6 +1,8 @@
 .static_pages {
   @include outer-container;
+  @include media($tablet) { padding: 1em; }
   @include media($mobile) { padding: 0.5em; }
+
   
   //logo positioning
   .header {

@@ -18,8 +18,8 @@ $device-screen-image: '/assets/device.png';
   @include background(url($device-image), linear-gradient($gradient-angle, $device-background-bottom, $device-background-top), no-repeat $device-background-top scroll);
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100%;
-  height: 20em;
+  //width: 100%;
+  //height: 25em;
   @include span-columns(12);
   margin-top: 30px;
   @include border-top-radius(15px);
@@ -27,15 +27,10 @@ $device-screen-image: '/assets/device.png';
   @include border-left-radius(15px);
   @include border-right-radius(15px);
 
-  button {
-    @include button(simple, $base-background-color);
-    font-size: $base-font-size;
-    outline: none;
-  }
-
   .button {
     background: $dark-blue;
     opacity: 0.8;
+    margin-bottom: 0.5em;
   }
 }
 
@@ -44,8 +39,8 @@ $device-screen-image: '/assets/device.png';
   padding: 2em;
 
   @include media($large-screen) {
-    max-width: 50%;
-    padding: 4em;
+    max-width: 60%;
+    padding: 3em;
     float: left;
   }
 
@@ -54,10 +49,6 @@ $device-screen-image: '/assets/device.png';
     margin-bottom: .5em;
     padding-bottom: .5em;
     border-bottom: 1px solid transparentize($device-text-color, .7);
-  }
-
-  p {
-    margin-bottom: 1.5em;
   }
 }
 
