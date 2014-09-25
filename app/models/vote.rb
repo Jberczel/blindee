@@ -20,7 +20,7 @@ class Vote < ActiveRecord::Base
   end
 
   def finished?
-    true if public? # no requirements for public vote
+    return true if public? # no requirements for public vote
     get_participation_rate >= 0.75 || created_at <= 2.days.ago
   end
 
