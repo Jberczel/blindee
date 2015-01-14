@@ -3,6 +3,7 @@ source "https://rails-assets.org"
 
 ruby "2.1.2"
 
+# supsenders base application
 gem "airbrake"
 gem "bourbon", "~> 3.2.1"
 gem "coffee-rails"
@@ -57,13 +58,9 @@ group :staging, :production do
 end
 
 gem 'devise'
-
 gem 'chart-js-rails'
-
 gem 'haml'
-
 gem 'mandrill_mailer'
-
 gem 'redcarpet'
 gem 'font-awesome-sass', '~> 4.2.0'
-gem 'icheck-rails',  github: 'ricardodovalle/icheck-rails'
+gem 'icheck-rails'
