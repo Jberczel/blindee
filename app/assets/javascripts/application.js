@@ -13,9 +13,9 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
 //= require icheck
 //= require Chart
+//= require turbolinks
 //= require_tree .
 
 $(document).ready(function() {
