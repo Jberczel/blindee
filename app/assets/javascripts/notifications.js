@@ -1,4 +1,4 @@
-function notifications() {
+function renderTabNotifications() {
   //highights tab and includes number of uanswered/new votes
   var invite_votes = $(".invites .ribbon").length;
   var my_votes     = $(".questions .ribbon").length;

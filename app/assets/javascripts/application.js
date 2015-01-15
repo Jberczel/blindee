@@ -19,10 +19,9 @@
 //= require_tree .
 
 $(document).ready(function() {
-  tabs();
-  notifications();
-  icheck();
-
+  renderTabs();
+  renderTabNotifications();
+  renderButtons();
 });
 
 

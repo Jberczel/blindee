@@ -1,4 +1,4 @@
-function icheck() {
+function renderButtons() {
   if($(".icheck-me").length > 0){
     $(".icheck-me").each(function(){
       var $el  = $(this);
@@ -8,11 +8,6 @@ function icheck() {
         checkboxClass: 'icheckbox' + skin + color,
         radioClass: 'iradio' + skin + color,
       }
-      // add logs to trace
-      console.log("$el => " + $el.text);
-      console.log("this => " + this);
-      console.log("skin => " + skin);
-      console.log("color => " + color);
       $el.iCheck(opt);
     });
   }

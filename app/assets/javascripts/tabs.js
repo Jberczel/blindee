@@ -1,4 +1,4 @@
-function tabs() {
+function renderTabs() {
   var menu = $('.centered-navigation-menu');
   var menuToggle = $('.centered-navigation-menu-button');
   var signUp = $('.sign-up');
