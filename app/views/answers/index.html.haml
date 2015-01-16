@@ -1,0 +1,12 @@
+%section.results
+  %h1 The results are in.
+  %h3= @vote_presenter.participation_rate
+
+  - content_for :javascript do
+    = render 'chart.js'
+
+  %canvas.myChart
+
+  %h4= icon('comment', 'Comments')
+  - @vote_presenter.comments.each do |comment|
+    %blockquote= comment

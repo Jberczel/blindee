@@ -5,13 +5,11 @@ class AnswersController < ApplicationController
   before_action :check_requirements, only: :index   # to view results
 
   def index
-    @answers = @vote.answers
-    # TODO: use SQL to get 0 values as part of results hash
-    # workaround is create hash of 0's and merge found answers
-    h = {}    
+    @vote_presenter = VotePresenter.new(@vote, view_context)
+    h = {}
     ary = @vote.get_choices
     ary.each{ |a| h[a] = 0 }
-    @results = h.merge @answers.group(:answer).count
+    @results = h.merge @vote.answers.group(:answer).count
   end
 
   def create
@@ -53,5 +51,4 @@ class AnswersController < ApplicationController
         redirect_to root_path
       end
     end
- 
 end
