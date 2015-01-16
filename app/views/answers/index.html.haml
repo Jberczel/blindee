@@ -2,8 +2,7 @@
   %h1 The results are in.
   %h3= @vote_presenter.participation_rate
 
-  - content_for :javascript do
-    = render 'chart.js'
+  = render 'chart.js'
 
   %canvas.myChart
 
