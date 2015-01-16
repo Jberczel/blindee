@@ -10,11 +10,7 @@
     = csrf_meta_tags
   %body{:class => body_class}
     = render "sign_in"
-    - if user_signed_in?
-      = render "header"
-    - else
-      = link_to(image_tag('logo.png'), root_path, class: "header")
-      %h1.title Blindee
+    = render(user_signed_in? ? "header":"logo")
     = render "flashes"
     = yield
     = render "analytics"

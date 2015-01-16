@@ -1,8 +1,0 @@
-.invites-detail
-  %h4
-    = icon('users')
-    invites (#{@invites.count})
-  %hr/
-  %p= @invites.map{ |i| i.email }.join(", ")
-  - if current_user?(@vote.creator) && !@vote.finished?
-    = link_to icon('plus', 'Add Invites'), invite_vote_path, :class => "button"

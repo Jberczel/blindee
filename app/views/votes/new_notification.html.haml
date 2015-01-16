@@ -1,6 +1,5 @@
 .invite-form
   %h2 Notify Invites
-  / controller: 'votes', action: 'invite'
   = form_tag notification_vote_path do
     = text_area_tag :comment, nil, rows: 7, placeholder: "Send a reminder or notify your invites about the results."
     %button.button{:type => "submit"}

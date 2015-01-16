@@ -1,8 +1,9 @@
 .invite-form
   %h2 Invite Voters
-  / controller: 'votes', action: 'invite'
   = form_tag invite_vote_path do
     = text_area_tag :invite_emails, nil, rows: 7, placeholder: "Enter e-mails separated by commas.  Or just copy and paste e.g. \n\n jeb springfield <jeb1912@email.com>, \n bart simpson <b_simpson@email.com>"
+
     %button.button{:type => "submit"}
       = icon('mail-forward', 'Send Invites')
+
   = link_to icon("eye","Vote details"), vote_path(@vote), class: "button-detail"

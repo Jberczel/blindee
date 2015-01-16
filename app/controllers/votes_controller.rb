@@ -10,10 +10,12 @@ class VotesController < ApplicationController
   # GET /votes
   def index
     @votes = Vote.where(public_vote: true)
+    #@votes_presenter = VotePresenter.wrap(@votes, view_context)
   end
 
   # GET /votes/1
   def show
+    @vote_presenter = VotePresenter.new(@vote, view_context)
     @answer = @vote.answers.build
     @invites = @vote.invites
   end

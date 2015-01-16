@@ -1,12 +1,14 @@
-%h3= @vote.question
-- if details?(@vote)
-  .question-details
-    = markdown(@vote.details)
+%h3= @vote_presenter.question
+.question-details= @vote_presenter.details
+
 %h4.choices-header= icon('check-circle-o', 'choices')
 %hr/
-- if voted?(@vote.answers)
-  = render 'answer_choices'
-- else
+
+- if !@vote_presenter.current_user_voted?
   = render 'answer_form'
-- if @vote.finished? && voted?(@vote.answers)
-  = link_to icon("bar-chart", "View Results"), vote_answers_path(@vote), class: "button"
+- else
+  = render 'answer_choices'
+  - if @vote_presenter.finished?
+    = link_to icon("bar-chart", "View Results"), vote_answers_path(@vote), class: "button"
+
+

@@ -1,18 +1,40 @@
-- unless @vote.public?
-  = render "vote_status"
-.creator
-  %h4= icon('user','created by')
-  %hr/
-  %p= @vote.creator.email
-.vote-type
-  - if @vote.public?
+-#public vote does not have status, invites, and notification sections
+- if @vote_presenter.public_vote?
+  .creator
+    %h4= icon('user','created by')
+    %hr/
+    %p= @vote_presenter.creator_email
+  .vote-type
     %h4= icon('unlock-alt','vote type')
     %hr/
     %p Public
-  - else
+- else
+  -#private vote section
+  .status
+    %h4= icon('circle-o-notch', 'status')
+    %hr/
+    %p
+      = @vote_presenter.answers_count
+      of #{@vote_presenter.invites_count + 1} votes
+
+  .creator
+    %h4= icon('user','created by')
+    %hr/
+    %p= @vote_presenter.creator_email
+
+  .vote-type
     %h4= icon('lock','vote type')
     %hr/
     %p Private
-- unless @vote.public?
-  = render "vote_invites"
-  = render "notifications"
+
+  .invites-detail
+    %h4
+      = icon('users')
+      invites (#{@vote_presenter.invites_count})
+    %hr/
+    %p= @vote_presenter.invitees
+    - if current_user?(@vote.creator) && !@vote_presenter.finished?
+      = link_to icon('plus', 'Add Invites'), invite_vote_path, :class => "button"
+
+    - if @vote_presenter.creator_is_current_user? && !@vote_presenter.notifications_sent?
+      = link_to icon('mail-forward', 'Notify Invites'), notification_vote_path, :class => "button"

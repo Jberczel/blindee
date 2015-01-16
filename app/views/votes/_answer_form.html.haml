@@ -1,9 +1,9 @@
-= simple_form_for([@vote, @answer]) do |f|
+= simple_form_for([@vote, @vote.answers.build]) do |f|
   .radios
     - @vote.get_choices.each do |option|
       = f.label "#{option}", option do
         = f.radio_button :answer, option, class: "icheck-me", data: { skin: "square", color: "pink" }
         = option
+
   = f.input :comment, label: "comment (optional)"
-  %button{:type => "submit"}
-    = icon('check', 'Submit Vote')
+  %button{:type => "submit"}= icon('check', 'Submit Vote')
