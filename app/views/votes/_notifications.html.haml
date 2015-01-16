@@ -1,0 +1,2 @@
+- if current_user?(@vote.creator) && !@vote.notified?
+  = link_to icon('mail-forward', 'Notify Invites'), notification_vote_path, :class => "button"

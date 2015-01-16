@@ -1,0 +1,18 @@
+- unless @vote.public?
+  = render "vote_status"
+.creator
+  %h4= icon('user','created by')
+  %hr/
+  %p= @vote.creator.email
+.vote-type
+  - if @vote.public?
+    %h4= icon('unlock-alt','vote type')
+    %hr/
+    %p Public
+  - else
+    %h4= icon('lock','vote type')
+    %hr/
+    %p Private
+- unless @vote.public?
+  = render "vote_invites"
+  = render "notifications"

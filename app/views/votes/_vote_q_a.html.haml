@@ -1,0 +1,12 @@
+%h3= @vote.question
+- if details?(@vote)
+  .question-details
+    = markdown(@vote.details)
+%h4.choices-header= icon('check-circle-o', 'choices')
+%hr/
+- if voted?(@vote.answers)
+  = render 'answer_choices'
+- else
+  = render 'answer_form'
+- if @vote.finished? && voted?(@vote.answers)
+  = link_to icon("bar-chart", "View Results"), vote_answers_path(@vote), class: "button"

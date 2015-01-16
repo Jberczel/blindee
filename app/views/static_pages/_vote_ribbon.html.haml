@@ -1,0 +1,4 @@
+- if !voted?(object.answers)
+  .ribbon-wrapper
+    .ribbon
+      = link_to "Vote!", vote_path(object)

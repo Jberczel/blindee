@@ -1,0 +1,16 @@
+- if user_signed_in?
+  %ul.accordion-tabs-minimal
+    %li.tab-header-and-content
+      %a.tab-link.invite-link.is-active{:href => "#"}
+        = icon("envelope")
+        Invites
+      .tab-content
+        = render "invites"
+    %li.tab-header-and-content
+      %a.tab-link.my-link{:href => "#"}
+        = icon("check-square")
+        My Votes
+      .tab-content
+        = render "your_questions"
+- else
+  = render "hero_unit"
