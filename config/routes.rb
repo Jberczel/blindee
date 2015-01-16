@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   resources :votes do
     member do
       get  :invite, to: 'invites#new_many'
@@ -8,13 +7,13 @@ Rails.application.routes.draw do
       get  :notification, to: 'votes#new_notification'
       post :notification, to: 'votes#send_notification'
     end
-    resources :answers 
+    resources :answers
   end
 
- devise_for :users, :controllers => { :registrations => "registrations" }, :skip => [:sessions]
+  devise_for :users, :controllers => { :registrations => "registrations" }, :skip => [:sessions]
   as :user do
-    get 'login' => 'devise/sessions#new', :as => :new_user_session
-    post 'login' => 'devise/sessions#create', :as => :user_session
+    get 'login'      => 'devise/sessions#new',     :as => :new_user_session
+    post 'login'     => 'devise/sessions#create',  :as => :user_session
     delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
