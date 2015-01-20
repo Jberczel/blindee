@@ -3,10 +3,21 @@ class VotePresenter < BasePresenter
   MIN_DAYS      = 2    # after 2 days, voters can see results despite participation rate
 
   def render_participation_rate
-    if @model.public?
-      "#{h.pluralize(@model.answers.count, "vote")} so far"
+    if public_vote?
+      "#{h.pluralize(answers.count, 'vote')} so far"
     else
       "#{h.number_to_percentage(participation_rate, precision: 0)} participation rate"
+    end
+  end
+
+  def render_vote_count
+    h.content_tag :div, :class => 'vote-count' do
+      if public_vote?
+       "#{h.pluralize(answers_count, 'vote')} so far"
+      else
+        "#{answers_count} of #{h.pluralize(invites_count + 1, 'vote')}" +
+        " (required: #{((invites_count + 1) * MIN_PART_RATE).ceil})"
+      end
     end
   end
 
@@ -16,6 +27,10 @@ class VotePresenter < BasePresenter
 
   def details
     @model.details.blank? ? "No details." : h.markdown(@model.details)
+  end
+
+  def current_user_invited?
+    invites.find_by(recipient: h.current_user) || creator_is_current_user?
   end
 
   def current_user_voted?
