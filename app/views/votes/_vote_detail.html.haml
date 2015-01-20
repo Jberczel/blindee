@@ -33,7 +33,7 @@
       invites (#{@vote_presenter.invites_count})
     %hr/
     %p= @vote_presenter.invitees
-    - if current_user?(@vote.creator) && !@vote_presenter.finished?
+    - if @vote_presenter.creator_is_current_user? && !@vote_presenter.finished?
       = link_to icon('plus', 'Add Invites'), invite_vote_path, :class => "button"
 
     - if @vote_presenter.creator_is_current_user? && !@vote_presenter.notifications_sent?
