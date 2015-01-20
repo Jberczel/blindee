@@ -1,54 +1,38 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_vote, only: [:index, :create]
-  before_action :check_user_vote, only: :create     # prevent multiple votes
-  before_action :check_requirements, only: :index   # to view results
+  before_action :set_vote_presenter, only: [:index, :create]
 
   def index
-    @vote_presenter = VotePresenter.new(@vote, view_context)
-    h = {}
-    ary = @vote.get_choices
-    ary.each{ |a| h[a] = 0 }
-    @results = h.merge @vote.answers.group(:answer).count
+    if @vote_presenter.finished? && @vote_presenter.current_user_voted?
+      @results = ChartData.results(@vote)
+    else
+      redirect_to root_path, :notice => 'Sorry, you cannot view results yet.'
+    end
   end
 
   def create
-    @answer = @vote.answers.build(answer_params)
-    @answer.user_id = current_user.id
-    if @answer.save
-      flash[:success] = 'Thanks, your vote was cast.'
-      redirect_to root_path
+    @answer = @vote.answers.build(answer_params.merge(user: current_user))
+    if @vote_presenter.current_user_voted?
+      redirect_to root_path, :notice => "Sorry you've already voted"
+    elsif @answer.save
+      redirect_to root_path, :flash => { :success => 'Thanks, your vote was cast.' }
     else
-      flash[:notice] = "Please select an answer."
-      redirect_to @vote
+      redirect_to @vote, :notice => 'Please select an answer.'
     end
   end
 
   private
 
-    def set_vote
-      @vote = Vote.find(params[:vote_id])
-    end
+  def set_vote
+    @vote = Vote.find(params[:vote_id])
+  end
 
-    def answer_params
-      params.require(:answer).permit(:answer, :comment)
-    end
+  def set_vote_presenter
+    @vote_presenter = VotePresenter.new(@vote, view_context)
+  end
 
-    def check_user_vote
-      if voted?(@vote.answers)
-        flash[:notice] = "Sorry, you've already voted."
-        redirect_to root_path
-      end
-    end
-
-    def voted?(answers)
-      answers.find_by(user: current_user)
-    end
-
-    def check_requirements
-      unless voted?(@vote.answers) && @vote.finished?
-        flash[:notice] = "Sorry, you cannot see results yet."
-        redirect_to root_path
-      end
-    end
+  def answer_params
+    params.require(:answer).permit(:answer, :comment)
+  end
 end
