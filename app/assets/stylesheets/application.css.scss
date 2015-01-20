@@ -31,4 +31,7 @@
   padding-left: 0.5rem;
 }
 
-
+.debug_dump {
+  @include span-columns(6);
+  @include shift(3);
+}

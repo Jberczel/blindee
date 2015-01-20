@@ -13,4 +13,5 @@
     = render(user_signed_in? ? "header":"logo")
     = render "flashes"
     = yield
+    = debug(params) if Rails.env.development?
     = render "analytics"
