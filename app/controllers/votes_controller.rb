@@ -1,95 +1,67 @@
 class VotesController < ApplicationController
   include VotesHelper
   before_action :authenticate_user!
-  before_action :set_vote, only: [ :show, :edit, :update, :destroy, :new_notification, :send_notification ]
-  before_action :check_creator, only: [ :edit, :update, :destroy ]
-  before_action :check_invited, only: :show, unless: :public_vote?
-  before_action :check_notified, only: [ :new_notification, :send_notification ]
+  before_action :set_vote, only: [ :show, :destroy, :new_notification, :send_notification ]
+  before_action :already_notified?, only: [ :new_notification, :send_notification ]
 
-
-  # GET /votes
   def index
-    @votes = Vote.where(public_vote: true)
-    #@votes_presenter = VotePresenter.wrap(@votes, view_context)
+    @votes = Vote.where(public_vote: true).includes(:creator)
+    @votes_presenter = VotePresenter.wrap(@votes, view_context)
   end
 
-  # GET /votes/1
   def show
-    @vote_presenter = VotePresenter.new(@vote, view_context)
-    @answer = @vote.answers.build
-    @invites = @vote.invites
+    if !@vote_presenter.current_user_invited? && !@vote_presenter.public_vote?
+      redirect_to root_path, notice: "Sorry, you weren't invited to this Vote."
+    end
   end
 
-  # GET /votes/new
   def new
     @vote = current_user.created_votes.build
   end
 
-  # GET /votes/1/edit
-  def edit
-  end
-
-  # POST /votes
   def create
     @vote = current_user.created_votes.build(vote_params)
-   
     if @vote.save
-      if public_vote?
-        # flash doesn't appear if I use short-hand style
-        flash[:success] = 'Your public vote was successfully created.'
-        redirect_to @vote
+      if @vote.public_vote
+        redirect_to @vote, :flash => { :sucess => 'Your public vote was successfully created.' }
       else
-        flash[:success] = 'Vote was successfully created. Now invite some voters!'
-        redirect_to invite_vote_path(@vote) 
+        redirect_to invite_vote_path(@vote),  :flash => { :success => 'Vote was successfully created. Now invite some voters!' }
       end
     else
-      flash[:error] = "Uh oh, something went wrong."
-      render :new
+      render :new, :flash => { :error => 'Uh oh, something went wrong.' }
     end
   end
 
-  # PATCH/PUT /votes/1
-  def update
-    if @vote.update(vote_params)
-      # flash doesn't appear if I use short-hand style
-      flash[:success] = 'Vote was successfully updated.'
-      redirect_to @vote
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /votes/1
   def destroy
-    @vote.destroy
-    redirect_to root_path, notice: 'Vote was successfully destroyed.'
+    if @vote_presenter.creator_is_current_user?
+      @vote.destroy
+      redirect_to root_path, notice: 'Vote was successfully destroyed.'
+    end
   end
-
 
   def new_notification
   end
 
   def send_notification
-    comment = params[:comment]
-    Mailer.send_notification(@vote, vote_url(@vote), comment).deliver
+    Mailer.send_notification(@vote, vote_url(@vote), params[:comment]).deliver
     @vote.update_attributes(:notified => true)
-    flash[:notice] = "Notifications sent"
-    redirect_to vote_path(@vote)
+    redirect_to vote_path(@vote), :notice => 'Notifications sent'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_vote
-      @vote = Vote.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def vote_params
-      params.require(:vote).permit(:question, :choices, :details, :public_vote)
-    end
+  def set_vote
+    @vote           = Vote.find(params[:id])
+    @vote_presenter = VotePresenter.new(@vote, view_context)
+  end
 
-    def check_notified
-      # public votes do not get notifications as well
-      redirect_to vote_path(@vote), notice: "Already notified." if @vote.notified? || @vote.public?
+  def vote_params
+    params.require(:vote).permit(:question, :choices, :details, :public_vote)
+  end
+
+  def already_notified?
+    if @vote_presenter.notified? || @vote_presenter.public_vote?
+      redirect_to vote_path(@vote), notice: "Already notified."
     end
+  end
 end
