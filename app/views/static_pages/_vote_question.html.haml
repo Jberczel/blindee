@@ -1,10 +1,3 @@
 .question
   = link_to object.question, vote_path(object)
-  .vote-count
-    - if object.public?
-      = pluralize( object.answers.count, "vote")
-      so far
-    - else
-      = object.answers.count
-      of #{pluralize(object.invites.count + 1, "vote")}
-      (required: #{((object.invites.count + 1) * 0.75).ceil})
+  = object.render_vote_count

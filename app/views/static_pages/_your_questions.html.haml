@@ -1,10 +1,9 @@
 .questions
-  - if @created_votes
-    %ul
-      - @created_votes.each do |v|
-        %li.vote-listing
-          = render "vote_ribbon", object: v
-          = render "vote_question", object: v
-          = render "vote_footer", object: v
-        %span.post-time
-          Posted #{time_ago_in_words(v.created_at)} ago
+  %ul
+    - @votes_presenter.each do |vote|
+      %li.vote-listing
+        = render "vote_ribbon", object: vote
+        = render "vote_question", object: vote
+        = render "vote_footer", object: vote
+      %span.post-time
+        Posted #{time_ago_in_words(vote.created_at)} ago

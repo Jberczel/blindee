@@ -1,4 +1,4 @@
-- if !voted?(object.answers)
+- if !object.current_user_voted?
   .ribbon-wrapper
     .ribbon
       = link_to "Vote!", vote_path(object)

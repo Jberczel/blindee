@@ -1,10 +1,9 @@
 .invites
-  - if @invitations
-    %ul
-      - @invitations.each do |i|
-        %li.vote-listing
-          = render "vote_ribbon", object: i.vote
-          = render "vote_question", object: i.vote
-          = render "vote_footer", object: i.vote
-        %span.post-time
-          Invited #{time_ago_in_words(i.created_at)} ago by #{i.sender.email}
+  %ul
+    - @invites_presenter.each do |vote|
+      %li.vote-listing
+        = render "vote_ribbon", object: vote
+        = render "vote_question", object: vote
+        = render "vote_footer", object: vote
+      %span.post-time
+        Invited #{time_ago_in_words(vote.created_at)} ago by #{vote.creator_email}

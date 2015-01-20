@@ -3,16 +3,17 @@
   %hr/
   %p Not very scientific, but any Blindee user can vote here.
   %ul
-    - @votes.each do |vote|
+    - @votes_presenter.each do |vote|
       %li.vote-listing
         .question
           = link_to vote.question, vote
           .vote-count
-            = pluralize(vote.answers.count, "vote")
+            = pluralize(vote.answers_count, "vote")
             so far
         .vote-footer
           = link_to icon('eye', 'View'), vote_path(vote)
           = link_to icon('bar-chart', 'Results'), vote_answers_path(vote)
+
       %span.post-time
         = time_ago_in_words(vote.created_at)
-        ago by #{vote.creator.email}
+        ago by #{vote.creator_email}
