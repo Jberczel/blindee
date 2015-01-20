@@ -1,7 +1,7 @@
 # override Devise Registration to include invite tokens
 class RegistrationsController < Devise::RegistrationsController
 
-  def new  
+  def new
     build_resource({})
     # inspired by railscats--adds invite email to form based on token
     @token = params[:invite_token]
@@ -20,6 +20,6 @@ class RegistrationsController < Devise::RegistrationsController
       @invite.update_attributes(:recipient => resource) if @invite
     end
     Mailer.new_user(resource).deliver
- end
+  end
 
-end 
+end
