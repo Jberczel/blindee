@@ -28,7 +28,7 @@ class InvitationMailer < MandrillMailer::TemplateMailer
       :headers => { :"Reply-To" => invite.sender.email },
       subject: "You're invited to a Blindee Vote",
       to: invite.email,
-   
+
       vars: {
         'USER' => invite.sender.email,
         'QUESTION' => invite.vote.question,
