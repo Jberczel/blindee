@@ -4,9 +4,9 @@ class VotePresenter < BasePresenter
 
   def render_participation_rate
     if public_vote?
-      "#{h.pluralize(answers.count, 'vote')} so far"
+      "#{h.pluralize(answers_count, 'vote')} so far"
     else
-      "#{h.number_to_percentage(participation_rate, precision: 0)} participation rate"
+      "#{h.number_to_percentage(participation_rate * 100, precision: 0)} participation rate"
     end
   end
 
@@ -73,6 +73,6 @@ class VotePresenter < BasePresenter
   private
 
   def participation_rate
-    (answers.count.to_f / (invites.count + 1)) * 100
+    (answers_count.to_f / (invites_count + 1))
   end
 end
