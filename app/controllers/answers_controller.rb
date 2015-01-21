@@ -5,7 +5,7 @@ class AnswersController < ApplicationController
 
   def index
     if @vote_presenter.finished? && @vote_presenter.current_user_voted?
-      @results = ChartData.results(@vote)
+      @results = GenerateChartData.results(@vote)
     else
       redirect_to root_path, :notice => 'Sorry, you cannot view results yet.'
     end
