@@ -97,11 +97,16 @@ GEM
     erubis (2.7.0)
     excon (0.39.5)
     execjs (2.2.1)
+<<<<<<< Updated upstream
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+=======
+    faker (1.4.3)
+      i18n (~> 0.5)
+>>>>>>> Stashed changes
     flutie (2.0.0)
     font-awesome-sass (4.2.0)
       sass (~> 3.2)
@@ -279,7 +284,11 @@ DEPENDENCIES
   devise
   dotenv-rails
   email_validator
+<<<<<<< Updated upstream
   factory_girl_rails
+=======
+  faker
+>>>>>>> Stashed changes
   flutie
   font-awesome-sass (~> 4.2.0)
   foreman

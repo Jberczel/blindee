@@ -6,17 +6,30 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.destroy_all
-Vote.destroy_all
-Invite.destroy_all
 
-User.create!(email: "jamie@email.com", password: "watermellon")
-User.create!(email: "liam@email.com", password: "watermellon")
-User.create!(email: "dad@email.com", password: "watermellon")
-User.create!(email: "mom@email.com", password: "watermellon")
+u = User.new(email: "jamie@email.com", password: "watermellon")
+u.skip_confirmation!
+u.save!
 
-#Vote.create!(question: "Favorite fruit", choices: "apple\r\nbanana\r\norange", creator_id:1)
-#Vote.create!(question: "Favorite drink", choices: "soda\r\njuice\r\nwater", creator_id:2)
+9.times do |i|
+  email = "user_#{i}_#{Faker::Internet.free_email}"
+  u = User.new( email: email, password: "watermellon")
+  u.skip_confirmation!
+  u.save!
+end
+
+
+def create_votes(args={})
+  args.fetch(:count, 20).times do |question|
+    Vote.create!( question: Faker::Lorem.sentence,
+                  choices:  Faker::Lorem.words(2 + rand(2)).join("\n"),
+                  creator_id: rand(10) + 1,
+                  public_vote: args.fetch(:public_vote, false) )
+    end
+end
+
+create_votes
+create_votes(public_vote:true)
 
 #Invite.create!(email: 'liam@email.com', sender_id: 1, recipient_id: 2, vote_id: 1)
 #Invite.create!(email: 'dad@email.com', sender_id: 1, recipient_id: 3, vote_id: 1)

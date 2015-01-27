@@ -40,6 +40,7 @@ group :development, :test do
   gem "pry-rails"
   gem "rspec-rails", "~> 2.14.0"
   gem "letter_opener"
+  gem "faker"
 end
 
 group :test do
