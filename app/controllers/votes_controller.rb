@@ -23,12 +23,13 @@ class VotesController < ApplicationController
     @vote = current_user.created_votes.build(vote_params)
     if @vote.save
       if @vote.public_vote
-        redirect_to @vote, :flash => { :sucess => 'Your public vote was successfully created.' }
+        redirect_to @vote, :flash => { :success => 'Your public vote was successfully created.' }
       else
         redirect_to invite_vote_path(@vote),  :flash => { :success => 'Vote was successfully created. Now invite some voters!' }
       end
     else
-      render :new, :flash => { :error => 'Uh oh, something went wrong.' }
+      flash.now[:error] = 'Uh oh, something went wrong.'
+      render :new
     end
   end
 

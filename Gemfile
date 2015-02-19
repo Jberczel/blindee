@@ -4,7 +4,6 @@ source "https://rails-assets.org"
 ruby "2.1.2"
 
 # supsenders base application
-gem "airbrake"
 gem "bourbon", "~> 3.2.1"
 gem "coffee-rails"
 gem "delayed_job_active_record"
@@ -25,7 +24,6 @@ gem "unicorn"
 group :development do
   gem "foreman"
   gem "spring"
-  gem "spring-commands-rspec"
   gem "better_errors"
   gem "binding_of_caller" 
   gem "quiet_assets"
@@ -36,21 +34,19 @@ group :development, :test do
   gem "awesome_print"
   gem "byebug"
   gem "dotenv-rails"
-  gem "factory_girl_rails"
   gem "pry-rails"
-  gem "rspec-rails", "~> 2.14.0"
   gem "letter_opener"
   gem "faker"
 end
 
 group :test do
   gem "capybara-webkit", ">= 1.2.0"
-  gem "database_cleaner"
   gem "formulaic"
   gem "launchy"
-  gem "shoulda-matchers", require: false
   gem "timecop"
   gem "webmock"
+  gem 'minitest-reporters'
+  gem 'mini_backtrace'
 end
 
 group :staging, :production do

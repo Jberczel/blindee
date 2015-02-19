@@ -1,0 +1,10 @@
+one:
+  id: 1
+  email: blindee@email.com
+  encrypted_password: <%= Devise.bcrypt(User, 'watermellon') %>
+  created_at: <%= 2.days.ago %>
+  updated_at: <%= Time.now %>
+  confirmation_token: token_string
+  confirmed_at: <%= 2.days.ago %>
+  confirmation_sent_at: <%= 2.days.ago %>
+

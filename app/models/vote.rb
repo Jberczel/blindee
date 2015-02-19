@@ -7,11 +7,14 @@ class Vote < ActiveRecord::Base
 
   validates :question, presence: true, length: { maximum: 140 }
   validates :choices, presence: true, length: { maximum: 140 }
+  validates :creator_id, presence: true
 
   before_save :add_quote
 
+  MAX_CHOICES = 5
+
   def get_choices
-    choices.split(/\r?\n/).select { |c| c =~ /\S+/ }[0..4]
+    choices.split(/\r?\n/).select { |c| c =~ /\S+/ }.take(MAX_CHOICES)
   end
 
   private
